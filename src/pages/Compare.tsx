@@ -39,16 +39,16 @@ const Compare = () => {
   const bike2 = selectedBikes[1] ? getBikeBySlug(selectedBikes[1]) : null;
 
   const comparisonSpecs = [
-    { label: "Brand", key: "brand" },
-    { label: "Model", key: "model" },
-    { label: "Category", key: "category" },
-    { label: "Engine (cc)", key: "cc" },
-    { label: "Horsepower (HP)", key: "horsepower" },
-    { label: "Torque (Nm)", key: "torque" },
-    { label: "Weight (kg)", key: "weight" },
-    { label: "Top Speed (km/h)", key: "topSpeed" },
-    { label: "0-100 km/h (s)", key: "zeroToHundred" },
-    { label: "Price ($)", key: "price" },
+    { label: "แบรนด์", key: "brand" },
+    { label: "โมเดล", key: "model" },
+    { label: "ประเภท", key: "category" },
+    { label: "เครื่องยนต์ (cc)", key: "cc" },
+    { label: "แรงม้า (HP)", key: "horsepower" },
+    { label: "แรงบิด (นิวตันเมตร)", key: "torque" },
+    { label: "น้ำหนัก (กิโลกรัม)", key: "weight" },
+    { label: "ความเร็วสูงสุด (กิโลเมตร/ชั่วโมง)", key: "topSpeed" },
+    { label: "0-100 km/h (วินาที)", key: "zeroToHundred" },
+    { label: "Price (฿)", key: "price" },
   ];
 
   const getBetterValue = (key: string, val1: any, val2: any) => {
@@ -75,11 +75,11 @@ const Compare = () => {
           className="mb-12 text-center"
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            <span className="neon-text-cyan">Compare </span>
-            <span className="neon-text-green">Bikes</span>
+            <span className="neon-text-cyan">เปรียบเทียบ</span>
+            <span className="neon-text-green">มอเตอร์ไซค์</span>
           </h1>
           <p className="text-foreground/70 text-lg">
-            Select two bikes to compare their specifications side by side
+            เลือกรถมอเตอร์ไซค์ที่คุณต้องการเปรียบเทียบ
           </p>
         </motion.div>
 
@@ -94,7 +94,7 @@ const Compare = () => {
               className="glass-strong rounded-2xl p-6"
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold">Bike {index + 1}</h3>
+                <h3 className="text-xl font-bold">คันที่ {index + 1}</h3>
                 {selectedBikes[index] && (
                   <Button
                     variant="ghost"
