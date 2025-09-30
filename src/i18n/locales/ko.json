@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "홈",
+    "showroom": "쇼룸",
+    "collections": "컬렉션",
+    "map": "지도",
+    "history": "기록",
+    "wishlist": "위시리스트",
+    "compare": "비교",
+    "bookNow": "지금 예약"
+  },
+  "landing": {
+    "title": "빅바이크 쇼룸",
+    "subtitle": "프리미엄 모터사이클 경험",
+    "enterShowroom": "쇼룸 입장",
+    "viewCollections": "컬렉션 보기"
+  },
+  "specs": {
+    "cc": "배기량",
+    "ccDesc": "엔진 배기량(입방 센티미터)",
+    "hp": "마력",
+    "hpDesc": "엔진의 최대 마력 출력",
+    "torque": "토크",
+    "torqueDesc": "엔진이 생성할 수 있는 최대 토크",
+    "weight": "무게",
+    "weightDesc": "오토바이의 총 무게",
+    "topSpeed": "최고 속도",
+    "topSpeedDesc": "달성 가능한 최고 속도",
+    "acceleration": "0-100",
+    "accelerationDesc": "0에서 100km/h까지 가속 시간",
+    "price": "가격"
+  },
+  "actions": {
+    "details": "상세정보",
+    "addToWishlist": "위시리스트에 추가",
+    "removeFromWishlist": "위시리스트에서 제거",
+    "compareNow": "지금 비교",
+    "viewIn3D": "3D로 보기",
+    "viewInAR": "AR로 보기",
+    "share": "공유",
+    "book": "예약"
+  },
+  "booking": {
+    "title": "시승 예약",
+    "name": "이름",
+    "phone": "전화",
+    "type": "유형",
+    "testRide": "시승",
+    "rental": "렌탈",
+    "purchase": "구매",
+    "date": "날짜",
+    "time": "시간",
+    "submit": "제출",
+    "success": "예약 성공!"
+  },
+  "gamification": {
+    "viewed": "{count}/{total}대의 바이크를 보셨습니다",
+    "badge": "배지: {name}",
+    "yamahaFan": "야마하 팬",
+    "kawasakiFan": "카와사키 팬",
+    "ducatiFan": "두카티 팬",
+    "hondaFan": "혼다 팬",
+    "bmwFan": "BMW 팬"
+  },
+  "onboarding": {
+    "welcome": "빅바이크 쇼룸에 오신 것을 환영합니다!",
+    "tip1": "드래그하여 3D 모델 회전",
+    "tip2": "스크롤하여 바이크 전환",
+    "tip3": "화살표 키로 탐색",
+    "gotIt": "알겠습니다"
+  },
+  "loading": {
+    "polishing": "페어링 광택 중...",
+    "preparing": "엔진 준비 중...",
+    "loading": "로딩 중..."
+  },
+  "chat": {
+    "title": "AI 어시스턴트",
+    "placeholder": "바이크에 대해 질문...",
+    "send": "보내기"
+  },
+  "theme": {
+    "light": "라이트 모드",
+    "dark": "다크 모드"
+  },
+  "modes": {
+    "lite": "라이트 모드",
+    "full": "풀 모드"
+  }
+}

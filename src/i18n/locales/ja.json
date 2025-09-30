@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "showroom": "ショールーム",
+    "collections": "コレクション",
+    "map": "地図",
+    "history": "履歴",
+    "wishlist": "ウィッシュリスト",
+    "compare": "比較",
+    "bookNow": "今すぐ予約"
+  },
+  "landing": {
+    "title": "ビッグバイクショールーム",
+    "subtitle": "プレミアムモーターサイクル体験",
+    "enterShowroom": "ショールームへ",
+    "viewCollections": "コレクションを見る"
+  },
+  "specs": {
+    "cc": "排気量",
+    "ccDesc": "エンジンの総排気量",
+    "hp": "馬力",
+    "hpDesc": "エンジンの最大馬力出力",
+    "torque": "トルク",
+    "torqueDesc": "エンジンが生成できる最大トルク",
+    "weight": "重量",
+    "weightDesc": "バイクの総重量",
+    "topSpeed": "最高速度",
+    "topSpeedDesc": "達成可能な最高速度",
+    "acceleration": "0-100",
+    "accelerationDesc": "0から100km/hまでの加速時間",
+    "price": "価格"
+  },
+  "actions": {
+    "details": "詳細",
+    "addToWishlist": "ウィッシュリストに追加",
+    "removeFromWishlist": "ウィッシュリストから削除",
+    "compareNow": "今すぐ比較",
+    "viewIn3D": "3Dで見る",
+    "viewInAR": "ARで見る",
+    "share": "共有",
+    "book": "予約"
+  },
+  "booking": {
+    "title": "試乗予約",
+    "name": "名前",
+    "phone": "電話",
+    "type": "タイプ",
+    "testRide": "試乗",
+    "rental": "レンタル",
+    "purchase": "購入",
+    "date": "日付",
+    "time": "時間",
+    "submit": "送信",
+    "success": "予約成功！"
+  },
+  "gamification": {
+    "viewed": "{count}/{total}台のバイクを見ました",
+    "badge": "バッジ: {name}",
+    "yamahaFan": "ヤマハファン",
+    "kawasakiFan": "カワサキファン",
+    "ducatiFan": "ドゥカティファン",
+    "hondaFan": "ホンダファン",
+    "bmwFan": "BMWファン"
+  },
+  "onboarding": {
+    "welcome": "ビッグバイクショールームへようこそ！",
+    "tip1": "ドラッグして3Dモデルを回転",
+    "tip2": "スクロールしてバイクを切り替え",
+    "tip3": "矢印キーでナビゲート",
+    "gotIt": "了解"
+  },
+  "loading": {
+    "polishing": "カウルを磨いています...",
+    "preparing": "エンジンを準備中...",
+    "loading": "読み込み中..."
+  },
+  "chat": {
+    "title": "AIアシスタント",
+    "placeholder": "バイクについて質問...",
+    "send": "送信"
+  },
+  "theme": {
+    "light": "ライトモード",
+    "dark": "ダークモード"
+  },
+  "modes": {
+    "lite": "ライトモード",
+    "full": "フルモード"
+  }
+}

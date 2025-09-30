@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "showroom": "Ausstellungsraum",
+    "collections": "Sammlungen",
+    "map": "Karte",
+    "history": "Verlauf",
+    "wishlist": "Wunschliste",
+    "compare": "Vergleichen",
+    "bookNow": "Jetzt buchen"
+  },
+  "landing": {
+    "title": "BigBike Showroom",
+    "subtitle": "Erleben Sie Premium-Motorräder",
+    "enterShowroom": "Showroom betreten",
+    "viewCollections": "Sammlungen ansehen"
+  },
+  "specs": {
+    "cc": "Hubraum",
+    "ccDesc": "Motorhubraum in Kubikzentimetern",
+    "hp": "PS",
+    "hpDesc": "Maximale Motorleistung",
+    "torque": "Drehmoment",
+    "torqueDesc": "Maximales Drehmoment des Motors",
+    "weight": "Gewicht",
+    "weightDesc": "Gesamtgewicht des Motorrads",
+    "topSpeed": "Höchstgeschwindigkeit",
+    "topSpeedDesc": "Erreichbare Höchstgeschwindigkeit",
+    "acceleration": "0-100",
+    "accelerationDesc": "Zeit von 0 auf 100 km/h",
+    "price": "Preis"
+  },
+  "actions": {
+    "details": "Details",
+    "addToWishlist": "Zur Wunschliste hinzufügen",
+    "removeFromWishlist": "Von Wunschliste entfernen",
+    "compareNow": "Jetzt vergleichen",
+    "viewIn3D": "In 3D ansehen",
+    "viewInAR": "In AR ansehen",
+    "share": "Teilen",
+    "book": "Buchen"
+  },
+  "booking": {
+    "title": "Probefahrt buchen",
+    "name": "Name",
+    "phone": "Telefon",
+    "type": "Typ",
+    "testRide": "Probefahrt",
+    "rental": "Vermietung",
+    "purchase": "Kauf",
+    "date": "Datum",
+    "time": "Zeit",
+    "submit": "Absenden",
+    "success": "Buchung erfolgreich!"
+  },
+  "gamification": {
+    "viewed": "Sie haben {count}/{total} Motorräder angesehen",
+    "badge": "Abzeichen: {name}",
+    "yamahaFan": "Yamaha-Fan",
+    "kawasakiFan": "Kawasaki-Fan",
+    "ducatiFan": "Ducati-Fan",
+    "hondaFan": "Honda-Fan",
+    "bmwFan": "BMW-Fan"
+  },
+  "onboarding": {
+    "welcome": "Willkommen im BigBike Showroom!",
+    "tip1": "Ziehen Sie, um 3D-Modelle zu drehen",
+    "tip2": "Scrollen Sie, um Motorräder zu wechseln",
+    "tip3": "Verwenden Sie Pfeiltasten zur Navigation",
+    "gotIt": "Verstanden"
+  },
+  "loading": {
+    "polishing": "Verkleidung polieren...",
+    "preparing": "Motor vorbereiten...",
+    "loading": "Lädt..."
+  },
+  "chat": {
+    "title": "KI-Assistent",
+    "placeholder": "Fragen Sie nach Motorrädern...",
+    "send": "Senden"
+  },
+  "theme": {
+    "light": "Heller Modus",
+    "dark": "Dunkler Modus"
+  },
+  "modes": {
+    "lite": "Lite-Modus",
+    "full": "Vollmodus"
+  }
+}

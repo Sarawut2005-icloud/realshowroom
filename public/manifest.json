@@ -1,0 +1,28 @@
+{
+  "name": "โชว์รูมบิ๊กไบค์",
+  "short_name": "โชว์รูม",
+  "description": "ขายรถ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0D0F1B",
+  "theme_color": "#00E5FF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 24x24 32x32 64x64",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icons/icon-192.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.jpg",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

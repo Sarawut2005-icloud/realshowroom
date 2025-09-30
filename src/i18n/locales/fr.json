@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "showroom": "Salle d'exposition",
+    "collections": "Collections",
+    "map": "Carte",
+    "history": "Historique",
+    "wishlist": "Liste de souhaits",
+    "compare": "Comparer",
+    "bookNow": "Réserver maintenant"
+  },
+  "landing": {
+    "title": "Salle d'exposition BigBike",
+    "subtitle": "Découvrez les motos premium",
+    "enterShowroom": "Entrer dans la salle",
+    "viewCollections": "Voir les collections"
+  },
+  "specs": {
+    "cc": "Cylindrée",
+    "ccDesc": "Cylindrée du moteur en centimètres cubes",
+    "hp": "CV",
+    "hpDesc": "Puissance maximale du moteur",
+    "torque": "Couple",
+    "torqueDesc": "Couple maximal produit par le moteur",
+    "weight": "Poids",
+    "weightDesc": "Poids total de la moto",
+    "topSpeed": "Vitesse maximale",
+    "topSpeedDesc": "Vitesse maximale atteignable",
+    "acceleration": "0-100",
+    "accelerationDesc": "Temps d'accélération de 0 à 100 km/h",
+    "price": "Prix"
+  },
+  "actions": {
+    "details": "Détails",
+    "addToWishlist": "Ajouter à la liste de souhaits",
+    "removeFromWishlist": "Retirer de la liste",
+    "compareNow": "Comparer maintenant",
+    "viewIn3D": "Voir en 3D",
+    "viewInAR": "Voir en AR",
+    "share": "Partager",
+    "book": "Réserver"
+  },
+  "booking": {
+    "title": "Réserver un essai",
+    "name": "Nom",
+    "phone": "Téléphone",
+    "type": "Type",
+    "testRide": "Essai",
+    "rental": "Location",
+    "purchase": "Achat",
+    "date": "Date",
+    "time": "Heure",
+    "submit": "Soumettre",
+    "success": "Réservation réussie!"
+  },
+  "gamification": {
+    "viewed": "Vous avez vu {count}/{total} motos",
+    "badge": "Badge: {name}",
+    "yamahaFan": "Fan de Yamaha",
+    "kawasakiFan": "Fan de Kawasaki",
+    "ducatiFan": "Fan de Ducati",
+    "hondaFan": "Fan de Honda",
+    "bmwFan": "Fan de BMW"
+  },
+  "onboarding": {
+    "welcome": "Bienvenue dans la salle d'exposition BigBike!",
+    "tip1": "Faites glisser pour faire pivoter les modèles 3D",
+    "tip2": "Faites défiler pour changer de moto",
+    "tip3": "Utilisez les touches fléchées pour naviguer",
+    "gotIt": "Compris"
+  },
+  "loading": {
+    "polishing": "Polissage des carénages...",
+    "preparing": "Préparation du moteur...",
+    "loading": "Chargement..."
+  },
+  "chat": {
+    "title": "Assistant IA",
+    "placeholder": "Posez des questions sur les motos...",
+    "send": "Envoyer"
+  },
+  "theme": {
+    "light": "Mode clair",
+    "dark": "Mode sombre"
+  },
+  "modes": {
+    "lite": "Mode allégé",
+    "full": "Mode complet"
+  }
+}

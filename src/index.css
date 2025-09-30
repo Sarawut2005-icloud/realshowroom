@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark cosmic background */
+    --background: 220 20% 8%;
+    --foreground: 0 0% 98%;
+
+    /* Glass cards with slight tint */
+    --card: 220 20% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Neon cyan primary */
+    --primary: 187 100% 50%;
+    --primary-foreground: 220 20% 8%;
+
+    /* Neon green secondary */
+    --secondary: 158 100% 50%;
+    --secondary-foreground: 220 20% 8%;
+
+    /* Muted glass effect */
+    --muted: 220 20% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    /* Accent neon */
+    --accent: 187 100% 50%;
+    --accent-foreground: 220 20% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Glass borders */
+    --border: 0 0% 20%;
+    --input: 220 20% 15%;
+    --ring: 187 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom neon colors */
+    --neon-cyan: 187 100% 50%;
+    --neon-green: 158 100% 50%;
+    --neon-cyan-glow: 187 100% 60%;
+    --neon-green-glow: 158 100% 60%;
+
+    /* Gradients */
+    --gradient-neon: linear-gradient(135deg, hsl(187 100% 50%), hsl(158 100% 50%));
+    --gradient-bg: linear-gradient(180deg, hsl(220 20% 8%), hsl(220 30% 5%));
+
+    /* Glass effect */
+    --glass-bg: hsla(0, 0%, 100%, 0.03);
+    --glass-border: hsla(0, 0%, 100%, 0.1);
+
+    /* Shadows with neon glow */
+    --shadow-neon-cyan: 0 0 30px hsla(187, 100%, 50%, 0.5);
+    --shadow-neon-green: 0 0 30px hsla(158, 100%, 50%, 0.5);
+    --shadow-glass: 0 8px 32px hsla(0, 0%, 0%, 0.4);
+
+    --sidebar-background: 220 20% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 220 20% 8%;
+    --sidebar-accent: 220 20% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 187 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background: linear-gradient(180deg, hsl(220 20% 8%), hsl(220 30% 5%));
+  }
+
+  /* Glass morphism utilities */
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .neon-border-cyan {
+    border: 1px solid hsl(var(--neon-cyan));
+    box-shadow: 0 0 20px hsla(187, 100%, 50%, 0.3);
+  }
+
+  .neon-border-green {
+    border: 1px solid hsl(var(--neon-green));
+    box-shadow: 0 0 20px hsla(158, 100%, 50%, 0.3);
+  }
+
+  .neon-text-cyan {
+    color: hsl(var(--neon-cyan));
+    text-shadow: 0 0 20px hsla(187, 100%, 50%, 0.5);
+  }
+
+  .neon-text-green {
+    color: hsl(var(--neon-green));
+    text-shadow: 0 0 20px hsla(158, 100%, 50%, 0.5);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+}

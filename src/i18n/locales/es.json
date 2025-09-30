@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "showroom": "Sala de exposición",
+    "collections": "Colecciones",
+    "map": "Mapa",
+    "history": "Historial",
+    "wishlist": "Lista de deseos",
+    "compare": "Comparar",
+    "bookNow": "Reservar ahora"
+  },
+  "landing": {
+    "title": "Sala de exposición BigBike",
+    "subtitle": "Experimenta motocicletas premium",
+    "enterShowroom": "Entrar al showroom",
+    "viewCollections": "Ver colecciones"
+  },
+  "specs": {
+    "cc": "Cilindrada",
+    "ccDesc": "Cilindrada del motor en centímetros cúbicos",
+    "hp": "CV",
+    "hpDesc": "Potencia máxima del motor",
+    "torque": "Par motor",
+    "torqueDesc": "Par máximo que puede producir el motor",
+    "weight": "Peso",
+    "weightDesc": "Peso total de la motocicleta",
+    "topSpeed": "Velocidad máxima",
+    "topSpeedDesc": "Velocidad máxima alcanzable",
+    "acceleration": "0-100",
+    "accelerationDesc": "Tiempo de aceleración de 0 a 100 km/h",
+    "price": "Precio"
+  },
+  "actions": {
+    "details": "Detalles",
+    "addToWishlist": "Añadir a lista de deseos",
+    "removeFromWishlist": "Quitar de la lista",
+    "compareNow": "Comparar ahora",
+    "viewIn3D": "Ver en 3D",
+    "viewInAR": "Ver en AR",
+    "share": "Compartir",
+    "book": "Reservar"
+  },
+  "booking": {
+    "title": "Reservar prueba",
+    "name": "Nombre",
+    "phone": "Teléfono",
+    "type": "Tipo",
+    "testRide": "Prueba",
+    "rental": "Alquiler",
+    "purchase": "Compra",
+    "date": "Fecha",
+    "time": "Hora",
+    "submit": "Enviar",
+    "success": "¡Reserva exitosa!"
+  },
+  "gamification": {
+    "viewed": "Has visto {count}/{total} motos",
+    "badge": "Insignia: {name}",
+    "yamahaFan": "Fan de Yamaha",
+    "kawasakiFan": "Fan de Kawasaki",
+    "ducatiFan": "Fan de Ducati",
+    "hondaFan": "Fan de Honda",
+    "bmwFan": "Fan de BMW"
+  },
+  "onboarding": {
+    "welcome": "¡Bienvenido a la sala de exposición BigBike!",
+    "tip1": "Arrastra para rotar modelos 3D",
+    "tip2": "Desplázate para cambiar de moto",
+    "tip3": "Usa las teclas de flecha para navegar",
+    "gotIt": "Entendido"
+  },
+  "loading": {
+    "polishing": "Puliendo carenados...",
+    "preparing": "Preparando motor...",
+    "loading": "Cargando..."
+  },
+  "chat": {
+    "title": "Asistente IA",
+    "placeholder": "Pregunta sobre motos...",
+    "send": "Enviar"
+  },
+  "theme": {
+    "light": "Modo claro",
+    "dark": "Modo oscuro"
+  },
+  "modes": {
+    "lite": "Modo ligero",
+    "full": "Modo completo"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Home",
+    "showroom": "Showroom",
+    "collections": "Collections",
+    "map": "Map",
+    "history": "History",
+    "wishlist": "Wishlist",
+    "compare": "Compare",
+    "bookNow": "Book Now"
+  },
+  "landing": {
+    "title": "BigBike Showroom",
+    "subtitle": "Experience Premium Motorcycles",
+    "enterShowroom": "Enter Showroom",
+    "viewCollections": "View Collections"
+  },
+  "specs": {
+    "cc": "CC",
+    "ccDesc": "Engine displacement in cubic centimeters",
+    "hp": "HP",
+    "hpDesc": "Maximum horsepower output of the engine",
+    "torque": "Torque",
+    "torqueDesc": "Maximum torque the engine can produce",
+    "weight": "Weight",
+    "weightDesc": "Total weight of the motorcycle",
+    "topSpeed": "Top Speed",
+    "topSpeedDesc": "Maximum achievable speed",
+    "acceleration": "0-100",
+    "accelerationDesc": "Time to accelerate from 0 to 100 km/h",
+    "price": "Price"
+  },
+  "actions": {
+    "details": "Details",
+    "addToWishlist": "Add to Wishlist",
+    "removeFromWishlist": "Remove from Wishlist",
+    "compareNow": "Compare Now",
+    "viewIn3D": "View in 3D",
+    "viewInAR": "View in AR",
+    "share": "Share",
+    "book": "Book"
+  },
+  "booking": {
+    "title": "Book a Test Ride",
+    "name": "Name",
+    "phone": "Phone",
+    "type": "Type",
+    "testRide": "Test Ride",
+    "rental": "Rental",
+    "purchase": "Purchase",
+    "date": "Date",
+    "time": "Time",
+    "submit": "Submit",
+    "success": "Booking successful!"
+  },
+  "gamification": {
+    "viewed": "You've viewed {count}/{total} bikes",
+    "badge": "Badge: {name}",
+    "yamahaFan": "Yamaha Fan",
+    "kawasakiFan": "Kawasaki Fan",
+    "ducatiFan": "Ducati Fan",
+    "hondaFan": "Honda Fan",
+    "bmwFan": "BMW Fan"
+  },
+  "onboarding": {
+    "welcome": "Welcome to BigBike Showroom!",
+    "tip1": "Drag to rotate 3D models",
+    "tip2": "Scroll to switch bikes",
+    "tip3": "Use arrow keys to navigate",
+    "gotIt": "Got it"
+  },
+  "loading": {
+    "polishing": "Polishing fairings...",
+    "preparing": "Preparing engine...",
+    "loading": "Loading..."
+  },
+  "chat": {
+    "title": "AI Assistant",
+    "placeholder": "Ask about bikes...",
+    "send": "Send"
+  },
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode"
+  },
+  "modes": {
+    "lite": "Lite Mode",
+    "full": "Full Mode"
+  }
+}

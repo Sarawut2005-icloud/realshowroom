@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "主页",
+    "showroom": "展厅",
+    "collections": "收藏",
+    "map": "地图",
+    "history": "历史",
+    "wishlist": "愿望清单",
+    "compare": "对比",
+    "bookNow": "立即预订"
+  },
+  "landing": {
+    "title": "大型摩托车展厅",
+    "subtitle": "体验高端摩托车",
+    "enterShowroom": "进入展厅",
+    "viewCollections": "查看收藏"
+  },
+  "specs": {
+    "cc": "排量",
+    "ccDesc": "发动机排量（立方厘米）",
+    "hp": "马力",
+    "hpDesc": "发动机最大马力输出",
+    "torque": "扭矩",
+    "torqueDesc": "发动机可产生的最大扭矩",
+    "weight": "重量",
+    "weightDesc": "摩托车总重量",
+    "topSpeed": "最高速度",
+    "topSpeedDesc": "可达到的最高速度",
+    "acceleration": "0-100",
+    "accelerationDesc": "从0加速到100公里/小时的时间",
+    "price": "价格"
+  },
+  "actions": {
+    "details": "详情",
+    "addToWishlist": "添加到愿望清单",
+    "removeFromWishlist": "从愿望清单中移除",
+    "compareNow": "立即对比",
+    "viewIn3D": "3D查看",
+    "viewInAR": "AR查看",
+    "share": "分享",
+    "book": "预订"
+  },
+  "booking": {
+    "title": "预订试驾",
+    "name": "姓名",
+    "phone": "电话",
+    "type": "类型",
+    "testRide": "试驾",
+    "rental": "租赁",
+    "purchase": "购买",
+    "date": "日期",
+    "time": "时间",
+    "submit": "提交",
+    "success": "预订成功！"
+  },
+  "gamification": {
+    "viewed": "您已查看 {count}/{total} 辆摩托车",
+    "badge": "徽章：{name}",
+    "yamahaFan": "雅马哈粉丝",
+    "kawasakiFan": "川崎粉丝",
+    "ducatiFan": "杜卡迪粉丝",
+    "hondaFan": "本田粉丝",
+    "bmwFan": "宝马粉丝"
+  },
+  "onboarding": {
+    "welcome": "欢迎来到大型摩托车展厅！",
+    "tip1": "拖动以旋转3D模型",
+    "tip2": "滚动以切换摩托车",
+    "tip3": "使用箭头键导航",
+    "gotIt": "知道了"
+  },
+  "loading": {
+    "polishing": "正在抛光车身...",
+    "preparing": "正在准备引擎...",
+    "loading": "加载中..."
+  },
+  "chat": {
+    "title": "AI助手",
+    "placeholder": "询问有关摩托车...",
+    "send": "发送"
+  },
+  "theme": {
+    "light": "浅色模式",
+    "dark": "深色模式"
+  },
+  "modes": {
+    "lite": "精简模式",
+    "full": "完整模式"
+  }
+}
