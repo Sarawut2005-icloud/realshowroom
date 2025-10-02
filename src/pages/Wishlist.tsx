@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { bikes } from "@/data/bikes";
+import { bikes } from "../data/bikes";
 import { Heart, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -21,7 +21,7 @@ const Wishlist = () => {
     localStorage.setItem("wishlist", JSON.stringify(newWishlist));
     
     toast({
-      title: "Removed from wishlist",
+      title: "ลบออกจากรายการโปรดแล้ว",
       description: bikes.find(b => b.slug === slug)?.fullName,
     });
   };
@@ -35,24 +35,24 @@ const Wishlist = () => {
           className="mb-12 text-center"
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            <span className="neon-text-cyan">My </span>
-            <span className="neon-text-green">Wishlist</span>
+            <span className="neon-text-cyan">รายการ</span>
+            <span className="neon-text-green">โปรด</span>
           </h1>
           <p className="text-foreground/70 text-lg">
-            {wishlistBikes.length} bike{wishlistBikes.length !== 1 ? "s" : ""} saved
+            บันทึกไว้ {wishlistBikes.length} คัน
           </p>
         </motion.div>
 
         {wishlistBikes.length === 0 ? (
           <div className="text-center py-16">
             <Heart className="w-24 h-24 mx-auto mb-6 text-foreground/20" />
-            <h2 className="text-2xl font-bold mb-4">Your wishlist is empty</h2>
+            <h2 className="text-2xl font-bold mb-4">รายการโปรดของคุณว่างเปล่า</h2>
             <p className="text-foreground/60 mb-8">
-              Start adding bikes you love to keep track of them
+              เริ่มเพิ่มรถที่คุณชื่นชอบเพื่อติดตามได้ที่นี่
             </p>
             <Link to="/collections">
               <Button className="bg-gradient-to-r from-primary to-secondary text-background">
-                Browse Collections
+                เลือกชมคอลเลกชัน
               </Button>
             </Link>
           </div>
@@ -87,13 +87,14 @@ const Wishlist = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="text-xl font-bold neon-text-cyan">
-                      ${bike.price.toLocaleString()}
+                      {bike.price.toLocaleString('th-TH', { style: 'currency', currency: 'THB', minimumFractionDigits: 0 })}
                     </div>
                     <Button
                       variant="ghost"
                       size="icon"
                       onClick={() => removeFromWishlist(bike.slug)}
                       className="text-red-500 hover:bg-red-500/10"
+                      aria-label="ลบออกจากรายการโปรด"
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
@@ -109,3 +110,4 @@ const Wishlist = () => {
 };
 
 export default Wishlist;
+

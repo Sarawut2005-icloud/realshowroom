@@ -7,54 +7,102 @@
     "history": "History",
     "wishlist": "Wishlist",
     "compare": "Compare",
-    "bookNow": "Book Now"
+    "bookNow": "Book a Ride"
   },
   "landing": {
-    "title": "BigBike Showroom",
-    "subtitle": "Experience Premium Motorcycles",
+    "title": "The Future of BigBike Showrooms",
+    "subtitle": "Experience premium motorcycles in stunning 3D",
     "enterShowroom": "Enter Showroom",
     "viewCollections": "View Collections"
+  },
+  "showroom": {
+    "title": "Select Your Motorcycle",
+    "filterTitle": "Filters",
+    "sortBy": "Sort By",
+    "sort": {
+      "priceAsc": "Price: Low to High",
+      "priceDesc": "Price: High to Low",
+      "hpDesc": "Horsepower: High to Low"
+    },
+    "noResults": "No motorcycles match your criteria"
+  },
+  "collections": {
+    "title": "Exclusive Collections",
+    "byBrand": "Shop by Brand",
+    "byCategory": "Shop by Category",
+    "sport": "Sport Bikes",
+    "adventure": "Adventure",
+    "cruiser": "Cruiser",
+    "naked": "Naked Bikes"
+  },
+  "map": {
+    "title": "Find Our Showroom",
+    "findUs": "Visit Us At",
+    "ourLocation": "Our Location",
+    "getDirections": "Get Directions"
+  },
+  "history": {
+    "title": "The History of Two Wheels",
+    "era": {
+      "classic": "Classic Era",
+      "modern": "Modern Era",
+      "future": "The Future"
+    }
+  },
+  "wishlist": {
+    "title": "Your Wishlist",
+    "empty": "Your wishlist is empty.",
+    "emptyAction": "Let's find a bike you love!"
+  },
+  "compare": {
+    "title": "Compare Motorcycles",
+    "addPrompt": "Add 2-3 bikes to start comparing",
+    "addMore": "Add another bike to compare",
+    "clearAll": "Clear All"
   },
   "specs": {
     "cc": "CC",
     "ccDesc": "Engine displacement in cubic centimeters",
-    "hp": "HP",
+    "hp": "Horsepower",
     "hpDesc": "Maximum horsepower output of the engine",
     "torque": "Torque",
     "torqueDesc": "Maximum torque the engine can produce",
     "weight": "Weight",
     "weightDesc": "Total weight of the motorcycle",
     "topSpeed": "Top Speed",
-    "topSpeedDesc": "Maximum achievable speed",
-    "acceleration": "0-100",
+    "topSpeedDesc": "The highest achievable speed",
+    "acceleration": "0-100 km/h",
     "accelerationDesc": "Time to accelerate from 0 to 100 km/h",
     "price": "Price"
   },
   "actions": {
-    "details": "Details",
+    "details": "View Details",
     "addToWishlist": "Add to Wishlist",
     "removeFromWishlist": "Remove from Wishlist",
-    "compareNow": "Compare Now",
+    "compareNow": "Compare",
     "viewIn3D": "View in 3D",
-    "viewInAR": "View in AR",
+    "viewInAR": "View in AR (Coming Soon)",
     "share": "Share",
     "book": "Book"
   },
   "booking": {
-    "title": "Book a Test Ride",
-    "name": "Name",
-    "phone": "Phone",
-    "type": "Type",
+    "title": "Book Your Test Ride",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "type": "Booking Type",
     "testRide": "Test Ride",
     "rental": "Rental",
     "purchase": "Purchase",
-    "date": "Date",
-    "time": "Time",
-    "submit": "Submit",
-    "success": "Booking successful!"
+    "date": "Select Date",
+    "time": "Select Time",
+    "submit": "Confirm Booking",
+    "success": "Your booking is confirmed!"
   },
   "gamification": {
-    "viewed": "You've viewed {count}/{total} bikes",
+    "progress": "Progress",
+    "achievements": "Achievements",
+    "unlocked": "Achievement Unlocked!",
+    "viewed": "Viewed {count} of {total} bikes",
     "badge": "Badge: {name}",
     "yamahaFan": "Yamaha Fan",
     "kawasakiFan": "Kawasaki Fan",
@@ -62,21 +110,44 @@
     "hondaFan": "Honda Fan",
     "bmwFan": "BMW Fan"
   },
+  "achievements": {
+    "firstLook": {
+      "name": "First Look",
+      "desc": "View your first motorcycle"
+    },
+    "enthusiast": {
+      "name": "Enthusiast",
+      "desc": "View 10 different motorcycles"
+    },
+    "collector": {
+      "name": "Collector",
+      "desc": "View more than half of the collection"
+    },
+    "masterExplorer": {
+      "name": "Master Explorer",
+      "desc": "View every motorcycle!"
+    },
+    "brandFan": {
+      "name": "{brand} Aficionado",
+      "desc": "View every motorcycle from {brand}"
+    }
+  },
   "onboarding": {
-    "welcome": "Welcome to BigBike Showroom!",
-    "tip1": "Drag to rotate 3D models",
-    "tip2": "Scroll to switch bikes",
-    "tip3": "Use arrow keys to navigate",
-    "gotIt": "Got it"
+    "welcome": "Welcome to the BigBike Showroom!",
+    "tip1": "Drag with your mouse to rotate the 3D model",
+    "tip2": "Use the scroll wheel to zoom in and out",
+    "tip3": "Click the arrows to switch to the next bike",
+    "gotIt": "Got It"
   },
   "loading": {
-    "polishing": "Polishing fairings...",
-    "preparing": "Preparing engine...",
-    "loading": "Loading..."
+    "polishing": "Polishing chrome...",
+    "preparing": "Preparing engines...",
+    "loading": "Loading 3D models...",
+    "complete": "SYSTEM READY"
   },
   "chat": {
-    "title": "AI Assistant",
-    "placeholder": "Ask about bikes...",
+    "title": "AI BIKE EXPERT",
+    "placeholder": "Ask me anything about big bikes...",
     "send": "Send"
   },
   "theme": {
@@ -86,5 +157,12 @@
   "modes": {
     "lite": "Lite Mode",
     "full": "Full Mode"
+  },
+  "footer": {
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "privacyPolicy": "Privacy Policy",
+    "socialMedia": "Social Media",
+    "copyright": "© {year} BigBike Showroom. All rights reserved."
   }
 }

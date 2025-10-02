@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { getBikeBySlug } from "@/data/bikes";
 import { Clock, CheckCircle, XCircle, Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom"; // แนะนำให้ใช้ Link แทน <a>
 
 interface Booking {
   id: string;
@@ -28,6 +29,34 @@ const History = () => {
     }
   }, []);
 
+  // แปลสถานะเป็นภาษาไทย
+  const translateStatus = (status: Booking["status"]) => {
+    switch (status) {
+      case "confirmed":
+        return "ยืนยันแล้ว";
+      case "cancelled":
+        return "ยกเลิกแล้ว";
+      default:
+        return "รอดำเนินการ";
+    }
+  };
+
+  // แปลประเภทการจองเป็นภาษาไทย
+  const translateBookingType = (type: string) => {
+    switch (type) {
+        case "test-ride":
+            return "ทดลองขับ";
+        case "rental":
+            return "สอบถามเรื่องเช่า";
+        case "purchase":
+            return "ปรึกษาการซื้อ";
+        case "service":
+            return "นัดหมายบริการ";
+        default:
+            return type;
+    }
+  }
+
   const updateBookingStatus = (id: string, status: Booking["status"]) => {
     const updated = bookings.map((b) =>
       b.id === id ? { ...b, status } : b
@@ -36,8 +65,8 @@ const History = () => {
     localStorage.setItem("bookings", JSON.stringify(updated));
     
     toast({
-      title: `Booking ${status}`,
-      description: "Status updated successfully",
+      title: `การจองถูก${status === 'cancelled' ? 'ยกเลิก' : 'ยืนยัน'}แล้ว`,
+      description: "อัปเดตสถานะเรียบร้อยแล้ว",
     });
   };
 
@@ -73,26 +102,26 @@ const History = () => {
         >
           <Calendar className="w-16 h-16 mx-auto mb-4 text-primary" />
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            <span className="neon-text-cyan">Booking </span>
-            <span className="neon-text-green">History</span>
+            <span className="neon-text-cyan">ประวัติ</span>
+            <span className="neon-text-green">การจอง</span>
           </h1>
           <p className="text-foreground/70 text-lg">
-            {bookings.length} appointment{bookings.length !== 1 ? "s" : ""} booked
+            มีนัดหมายทั้งหมด {bookings.length} รายการ
           </p>
         </motion.div>
 
         {bookings.length === 0 ? (
           <div className="text-center py-16">
             <Calendar className="w-24 h-24 mx-auto mb-6 text-foreground/20" />
-            <h2 className="text-2xl font-bold mb-4">No bookings yet</h2>
+            <h2 className="text-2xl font-bold mb-4">ยังไม่มีรายการจอง</h2>
             <p className="text-foreground/60 mb-8">
-              Book your first appointment to see your history here
+              ทำการจองครั้งแรกของคุณเพื่อดูประวัติที่นี่
             </p>
-            <a href="/booking">
+            <Link to="/booking">
               <Button className="bg-gradient-to-r from-primary to-secondary text-background">
-                Book Now
+                จองเลยตอนนี้
               </Button>
-            </a>
+            </Link>
           </div>
         ) : (
           <div className="space-y-4">
@@ -121,22 +150,22 @@ const History = () => {
                           <div className="flex items-center gap-2 mb-2">
                             {getStatusIcon(booking.status)}
                             <span className={`font-semibold capitalize ${getStatusColor(booking.status)}`}>
-                              {booking.status}
+                              {translateStatus(booking.status)}
                             </span>
                           </div>
                           <h3 className="text-xl font-bold mb-1">{bike?.fullName}</h3>
                           <p className="text-sm text-foreground/60 mb-2">
-                            {booking.type.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")}
+                            {translateBookingType(booking.type)}
                           </p>
                           <div className="flex flex-wrap gap-4 text-sm text-foreground/70">
                             <div>
-                              <span className="text-foreground/50">Date:</span> {booking.date}
+                              <span className="text-foreground/50">วันที่:</span> {booking.date}
                             </div>
                             <div>
-                              <span className="text-foreground/50">Time:</span> {booking.time}
+                              <span className="text-foreground/50">เวลา:</span> {booking.time}
                             </div>
                             <div>
-                              <span className="text-foreground/50">Contact:</span> {booking.phone}
+                              <span className="text-foreground/50">ติดต่อ:</span> {booking.phone}
                             </div>
                           </div>
                         </div>
@@ -150,7 +179,7 @@ const History = () => {
                             onClick={() => updateBookingStatus(booking.id, "cancelled")}
                             className="glass"
                           >
-                            Cancel
+                            ยกเลิก
                           </Button>
                         </div>
                       )}

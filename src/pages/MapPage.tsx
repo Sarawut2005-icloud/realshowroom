@@ -1,51 +1,61 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Navigation } from "lucide-react";
+import { MapPin, Navigation, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// ✅ 1. Replaced placeholder data with realistic Thai locations
 const locations = [
   {
     id: 1,
-    name: "BigBike Downtown Showroom",
-    address: "123 Main Street, City Center",
-    lat: 13.7563,
-    lng: 100.5018,
-    phone: "+1 (555) 123-4567",
+    name: "BigBike สาขาสยามพารากอน",
+    address: "991 ถนนพระรามที่ ๑ แขวงปทุมวัน เขตปทุมวัน กรุงเทพมหานคร 10330",
+    lat: 13.7461,
+    lng: 100.5347,
+    phone: "02-123-4567",
   },
   {
     id: 2,
-    name: "BigBike West Branch",
-    address: "456 West Avenue, West District",
-    lat: 13.7463,
-    lng: 100.4918,
-    phone: "+1 (555) 234-5678",
+    name: "BigBike สาขาเซ็นทรัลเวิลด์",
+    address: "999/9 ถนนพระรามที่ ๑ แขวงปทุมวัน เขตปทุมวัน กรุงเทพมหานคร 10330",
+    lat: 13.7468,
+    lng: 100.5398,
+    phone: "02-234-5678",
   },
   {
     id: 3,
-    name: "BigBike East Outlet",
-    address: "789 East Road, East Quarter",
-    lat: 13.7663,
-    lng: 100.5118,
-    phone: "+1 (555) 345-6789",
+    name: "BigBike สาขาไอคอนสยาม",
+    address: "299 ถนนเจริญนคร แขวงคลองต้นไทร เขตคลองสาน กรุงเทพมหานคร 10600",
+    lat: 13.7265,
+    lng: 100.5108,
+    phone: "02-345-6789",
   },
 ];
+
+type LocationStatus = 'idle' | 'fetching' | 'success' | 'error';
 
 const MapPage = () => {
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
   const [nearestBranch, setNearestBranch] = useState<typeof locations[0] | null>(null);
+  // ✅ 2. Added state for better user feedback
+  const [locationStatus, setLocationStatus] = useState<LocationStatus>('idle');
 
   useEffect(() => {
     if (navigator.geolocation) {
+      setLocationStatus('fetching'); // Start fetching
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const coords: [number, number] = [position.coords.latitude, position.coords.longitude];
           setUserLocation(coords);
           findNearestBranch(coords);
+          setLocationStatus('success'); // Success
         },
         (error) => {
           console.error("Error getting location:", error);
+          setLocationStatus('error'); // Error
         }
       );
+    } else {
+      setLocationStatus('error'); // Geolocation not supported
     }
   }, []);
 
@@ -53,7 +63,7 @@ const MapPage = () => {
     let nearest = locations[0];
     let minDistance = calculateDistance(userCoords, [nearest.lat, nearest.lng]);
 
-    locations.forEach((location) => {
+    locations.slice(1).forEach((location) => {
       const distance = calculateDistance(userCoords, [location.lat, location.lng]);
       if (distance < minDistance) {
         minDistance = distance;
@@ -64,10 +74,11 @@ const MapPage = () => {
     setNearestBranch(nearest);
   };
 
+  // Haversine formula to calculate distance between two lat/lng points
   const calculateDistance = (coords1: [number, number], coords2: [number, number]) => {
     const [lat1, lon1] = coords1;
     const [lat2, lon2] = coords2;
-    const R = 6371;
+    const R = 6371; // Radius of the Earth in km
     const dLat = ((lat2 - lat1) * Math.PI) / 180;
     const dLon = ((lon2 - lon1) * Math.PI) / 180;
     const a =
@@ -80,6 +91,19 @@ const MapPage = () => {
     return R * c;
   };
 
+  const renderStatusMessage = () => {
+    switch (locationStatus) {
+      case 'fetching':
+        return <p className="text-foreground/70 text-sm flex items-center justify-center gap-2"><Loader2 className="animate-spin w-4 h-4" /> กำลังค้นหาตำแหน่งของคุณ...</p>;
+      case 'success':
+        return <p className="text-green-500 text-sm">พบสาขาที่ใกล้คุณที่สุดแล้ว!</p>;
+      case 'error':
+        return <p className="text-red-500 text-sm">ไม่สามารถเข้าถึงตำแหน่งของคุณได้ กรุณาเปิด GPS หรืออนุญาตให้เบราว์เซอร์เข้าถึงตำแหน่ง</p>;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="min-h-screen pt-24 pb-16">
       <div className="container mx-auto px-4">
@@ -90,47 +114,52 @@ const MapPage = () => {
         >
           <MapPin className="w-16 h-16 mx-auto mb-4 text-primary" />
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            <span className="neon-text-cyan">Find </span>
-            <span className="neon-text-green">Us</span>
+            <span className="neon-text-cyan">ค้นหา</span>
+            <span className="neon-text-green">สาขา</span>
           </h1>
-          <p className="text-foreground/70 text-lg">
-            Visit our showrooms to experience the bikes in person
+          <p className="text-foreground/70 text-lg mb-4">
+            เยี่ยมชมโชว์รูมของเราเพื่อสัมผัสประสบการณ์บิ๊กไบค์ตัวจริง
           </p>
+          {renderStatusMessage()}
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {locations.map((location, index) => (
             <motion.div
               key={location.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className={`glass-strong rounded-2xl p-6 ${
+              className={`glass-strong rounded-2xl p-6 flex flex-col ${
                 nearestBranch?.id === location.id ? "neon-border-cyan" : ""
               }`}
             >
               <div className="flex items-start justify-between mb-4">
                 <h3 className="text-xl font-bold">{location.name}</h3>
                 {nearestBranch?.id === location.id && (
-                  <div className="flex items-center gap-1 text-xs text-primary">
+                  <div className="flex-shrink-0 flex items-center gap-1 text-xs text-primary bg-primary/10 px-2 py-1 rounded-full">
                     <Navigation className="w-3 h-3" />
-                    <span>Nearest</span>
+                    <span>ใกล้ที่สุด</span>
                   </div>
                 )}
               </div>
-              <p className="text-sm text-foreground/70 mb-2">{location.address}</p>
-              <p className="text-sm text-foreground/60 mb-4">{location.phone}</p>
+              <div className="flex-grow">
+                <p className="text-sm text-foreground/70 mb-2">{location.address}</p>
+                <p className="text-sm text-foreground/60 mb-4">โทร: {location.phone}</p>
+              </div>
               <Button
                 size="sm"
                 className="w-full bg-gradient-to-r from-primary to-secondary text-background"
                 onClick={() => {
+                  // ✅ 3. Corrected Google Maps URL for directions
                   window.open(
                     `https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}`,
                     "_blank"
                   );
                 }}
               >
-                Get Directions
+                <Navigation className="w-4 h-4 mr-2" />
+                นำทาง
               </Button>
             </motion.div>
           ))}

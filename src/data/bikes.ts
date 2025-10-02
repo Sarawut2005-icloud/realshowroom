@@ -9,9 +9,9 @@ export interface Bike {
   weight: number;
   topSpeed: number;
   zeroToHundred: number;
-  price: number;
+  price: number; // ราคาเป็นหน่วยบาท (THB)
   image: string;
-  imageLite: string;   // ✅ เพิ่ม field
+  imageLite: string;
   model3d: string;
   category: string;
   description: string;
@@ -29,17 +29,17 @@ export const bikes: Bike[] = [
     weight: 199,
     topSpeed: 299,
     zeroToHundred: 3.0,
-    price: 17999,
+    price: 899000, // ปรับราคาเป็น THB
     image: "/images/yamaha-r1.jpg",
-    imageLite: "/images/yamaha-r1-lite.jpg",  // ✅ Lite
+    imageLite: "/images/yamaha-r1-lite.jpg",
     model3d: "/models/yamaha-r1.glb",
     category: "Superbike",
-    description: "DNA การแข่งรถแท้ๆ ในแพ็คเกจที่ถูกกฎหมายบนท้องถนนพร้อมเทคโนโลยีที่ได้มาจาก MotoGP"
+    description: "DNA จากสนามแข่ง MotoGP ถ่ายทอดสู่รถสปอร์ตที่วิ่งบนถนนได้อย่างถูกกฎหมาย (กระเบน)"
   },
   {
-    slug: "yamaha-r15M",
+    slug: "yamaha-r15m",
     brand: "Yamaha",
-    model: "R15",
+    model: "R15M", // แก้ไข Model ให้ตรงกับ FullName
     fullName: "Yamaha YZF-R15M",
     cc: 155,
     horsepower: 18.6,
@@ -47,12 +47,12 @@ export const bikes: Bike[] = [
     weight: 142,
     topSpeed: 136,
     zeroToHundred: 8.5,
-    price: 3299,
+    price: 135000, // ปรับราคาเป็น THB
     image: "/images/yamaha-r15.jpg",
     imageLite: "/images/yamaha-r15-lite.jpg",
     model3d: "/models/yamaha-r15.glb",
     category: "Sport",
-    description: "Lightweight supersport with aggressive styling and nimble handling."
+    description: "ซูเปอร์สปอร์ตน้ำหนักเบาพร้อมสไตล์ที่ดุดันและการควบคุมที่คล่องแคล่ว (155 ทำแอ็ค)"
   },
   {
     slug: "kawasaki-zx10r",
@@ -65,12 +65,12 @@ export const bikes: Bike[] = [
     weight: 207,
     topSpeed: 299,
     zeroToHundred: 2.9,
-    price: 16999,
+    price: 915000, // ปรับราคาเป็น THB
     image: "/images/kawasaki-zx10r.jpg",
     imageLite: "/images/kawasaki-zx10r-lite.jpg",
     model3d: "/models/kawasaki-zx10r.glb",
     category: "Superbike",
-    description: "Championship-winning superbike with electronic rider aids and brutal power."
+    description: "ซูเปอร์ไบค์ดีกรีแชมป์โลก พร้อมเทคโนโลยีช่วยเหลือผู้ขับขี่และขุมพลังสุดโหด"
   },
   {
     slug: "kawasaki-ninja-400",
@@ -83,17 +83,17 @@ export const bikes: Bike[] = [
     weight: 168,
     topSpeed: 179,
     zeroToHundred: 4.9,
-    price: 5299,
+    price: 225000, // ปรับราคาเป็น THB
     image: "/images/kawasaki-ninja-400.jpg",
     imageLite: "/images/kawasaki-ninja-400-lite.jpg",
     model3d: "/models/kawasaki-ninja-400.glb",
     category: "Sport",
-    description: "Perfect blend of performance and accessibility for spirited riding."
+    description: "การผสมผสานที่ลงตัวระหว่างสมรรถนะและการเข้าถึงง่าย สำหรับการขับขี่ที่สนุกเร้าใจ"
   },
   {
     slug: "kawasaki-h2",
     brand: "Kawasaki",
-    model: "H2",
+    model: "Ninja H2", // แก้ไข Model ให้ตรงกับ FullName
     fullName: "Kawasaki Ninja H2",
     cc: 998,
     horsepower: 228,
@@ -101,12 +101,12 @@ export const bikes: Bike[] = [
     weight: 238,
     topSpeed: 337,
     zeroToHundred: 2.6,
-    price: 29000,
+    price: 1680000, // ปรับราคาเป็น THB
     image: "/images/kawasaki-h2.jpg",
     imageLite: "/images/kawasaki-h2-lite.jpg",
     model3d: "/models/kawasaki-h2.glb",
     category: "Hyperbike",
-    description: "Supercharged hyperbike pushing the boundaries of street-legal performance."
+    description: "ไฮเปอร์ไบค์ระบบซูเปอร์ชาร์จที่ก้าวข้ามขีดจำกัดของสมรรถนะบนท้องถนน"
   },
   {
     slug: "bmw-s1000rr",
@@ -119,12 +119,12 @@ export const bikes: Bike[] = [
     weight: 197,
     topSpeed: 303,
     zeroToHundred: 3.1,
-    price: 17995,
+    price: 1055000, // ปรับราคาเป็น THB
     image: "/images/bmw-s1000rr.jpg",
     imageLite: "/images/bmw-s1000rr-lite.jpg",
     model3d: "/models/bmw-s1000rr.glb",
     category: "Superbike",
-    description: "German precision engineering meets track-focused performance."
+    description: "สุดยอดวิศวกรรมความแม่นยำจากเยอรมนี ผสานกับสมรรถนะที่มุ่งเน้นในสนามแข่ง (ฉลาม)"
   },
   {
     slug: "honda-cbr650r",
@@ -137,12 +137,12 @@ export const bikes: Bike[] = [
     weight: 208,
     topSpeed: 220,
     zeroToHundred: 4.2,
-    price: 9499,
+    price: 324300, // ปรับราคาเป็น THB
     image: "/images/honda-cbr650r.jpg",
     imageLite: "/images/honda-cbr650r-lite.jpg",
     model3d: "/models/honda-cbr650r.glb",
     category: "Sport",
-    description: "Refined inline-four engine with everyday usability and sporty character."
+    description: "เครื่องยนต์สี่สูบเรียงที่นุ่มนวล พร้อมการใช้งานที่คล่องตัวในทุกวันและคาแรคเตอร์แบบสปอร์ต (สี่สูบเอื้ออาทร)"
   },
   {
     slug: "honda-cbr1000rr",
@@ -155,12 +155,12 @@ export const bikes: Bike[] = [
     weight: 196,
     topSpeed: 299,
     zeroToHundred: 3.0,
-    price: 16499,
+    price: 859000, // ปรับราคาเป็น THB
     image: "/images/honda-cbr1000rr.jpg",
     imageLite: "/images/honda-cbr1000rr-lite.jpg",
     model3d: "/models/honda-cbr1000rr.glb",
     category: "Superbike",
-    description: "Legendary Fireblade with Total Control technology for ultimate performance."
+    description: "ตำนาน Fireblade ที่มาพร้อมเทคโนโลยี Total Control เพื่อการควบคุมและสมรรถนะขั้นสูงสุด"
   },
   {
     slug: "ducati-panigale-v4",
@@ -173,12 +173,12 @@ export const bikes: Bike[] = [
     weight: 198,
     topSpeed: 305,
     zeroToHundred: 2.9,
-    price: 28395,
+    price: 1299000, // ปรับราคาเป็น THB
     image: "/images/ducati-panigale-v4.jpg",
     imageLite: "/images/ducati-panigale-v4-lite.jpg",
     model3d: "/models/ducati-panigale-v4.glb",
     category: "Superbike",
-    description: "Italian masterpiece with MotoGP-derived V4 engine and stunning design."
+    description: "ผลงานชิ้นเอกสัญชาติอิตาลี พร้อมเครื่องยนต์ V4 ที่ถ่ายทอดจาก MotoGP และดีไซน์อันน่าทึ่ง (เพนกวิน)"
   },
   {
     slug: "ducati-panigale-v2",
@@ -191,12 +191,12 @@ export const bikes: Bike[] = [
     weight: 200,
     topSpeed: 270,
     zeroToHundred: 3.4,
-    price: 16495,
+    price: 799000, // ปรับราคาเป็น THB
     image: "/images/ducati-panigale-v2.jpg",
     imageLite: "/images/ducati-panigale-v2-lite.jpg",
     model3d: "/models/ducati-panigale-v2.glb",
     category: "Superbike",
-    description: "Perfect balance of power and handling with signature Ducati passion."
+    description: "ความสมดุลที่สมบูรณ์แบบระหว่างพละกำลังและการควบคุม พร้อมจิตวิญญาณแห่ง Ducati"
   }
 ];
 

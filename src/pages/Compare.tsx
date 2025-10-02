@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { bikes, getBikeBySlug } from "@/data/bikes";
+import { bikes, getBikeBySlug } from "@/data/bikes"; // สมมติว่า path นี้ถูกต้อง
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -12,16 +12,34 @@ import {
 } from "@/components/ui/select";
 import { X } from "lucide-react";
 
+// สร้าง Type สำหรับ Bike เพื่อความปลอดภัยของโค้ด (แนะนำ)
+type Bike = ReturnType<typeof getBikeBySlug>;
+
 const Compare = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [selectedBikes, setSelectedBikes] = useState<string[]>([]);
 
+  // Effect ที่ 1: อ่านค่าจาก URL เมื่อเข้ามาที่หน้านี้ครั้งแรก
   useEffect(() => {
     const bikesParam = searchParams.get("bikes");
     if (bikesParam) {
-      setSelectedBikes(bikesParam.split(",").slice(0, 2));
+      // จำกัดให้มีแค่ 2 คัน และป้องกันค่าว่างที่อาจเกิดจาก split
+      const initialBikes = bikesParam.split(",").filter(Boolean).slice(0, 2);
+      setSelectedBikes(initialBikes);
     }
-  }, [searchParams]);
+  }, []); // ให้ทำงานแค่ครั้งเดียวตอน component โหลด
+
+  // Effect ที่ 2: อัปเดต URL search params ทุกครั้งที่ผู้ใช้เปลี่ยนรถ
+  useEffect(() => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (selectedBikes.length > 0) {
+      newSearchParams.set("bikes", selectedBikes.join(","));
+    } else {
+      newSearchParams.delete("bikes");
+    }
+    // ใช้ replace: true เพื่อไม่ให้ history ของ browserรกเกินไป
+    setSearchParams(newSearchParams, { replace: true });
+  }, [selectedBikes, setSearchParams]);
 
   const handleBikeSelect = (index: number, slug: string) => {
     const newSelection = [...selectedBikes];
@@ -30,8 +48,8 @@ const Compare = () => {
   };
 
   const removeBike = (index: number) => {
-    const newSelection = [...selectedBikes];
-    newSelection.splice(index, 1);
+    // เมื่อลบ ให้สร้าง array ใหม่โดยไม่มี item ที่ตำแหน่งนั้น
+    const newSelection = selectedBikes.filter((_, i) => i !== index);
     setSelectedBikes(newSelection);
   };
 
@@ -46,17 +64,17 @@ const Compare = () => {
     { label: "แรงม้า (HP)", key: "horsepower" },
     { label: "แรงบิด (นิวตันเมตร)", key: "torque" },
     { label: "น้ำหนัก (กิโลกรัม)", key: "weight" },
-    { label: "ความเร็วสูงสุด (กิโลเมตร/ชั่วโมง)", key: "topSpeed" },
-    { label: "0-100 km/h (วินาที)", key: "zeroToHundred" },
-    { label: "Price (฿)", key: "price" },
+    { label: "ความเร็วสูงสุด (กม./ชม.)", key: "topSpeed" },
+    { label: "0-100 กม./ชม. (วินาที)", key: "zeroToHundred" },
+    { label: "ราคา (บาท)", key: "price" }, // แก้ไข Label
   ];
 
   const getBetterValue = (key: string, val1: any, val2: any) => {
-    if (!val1 || !val2) return null;
-    
+    if (val1 === undefined || val1 === null || val2 === undefined || val2 === null) return null;
+
     const higherIsBetter = ["horsepower", "torque", "topSpeed", "cc"];
     const lowerIsBetter = ["weight", "zeroToHundred", "price"];
-    
+
     if (higherIsBetter.includes(key)) {
       return val1 > val2 ? 1 : val1 < val2 ? 2 : null;
     }
@@ -79,7 +97,7 @@ const Compare = () => {
             <span className="neon-text-green">มอเตอร์ไซค์</span>
           </h1>
           <p className="text-foreground/70 text-lg">
-            เลือกรถมอเตอร์ไซค์ที่คุณต้องการเปรียบเทียบ
+            เลือกรถมอเตอร์ไซค์ 2 คันที่คุณต้องการเปรียบเทียบ
           </p>
         </motion.div>
 
@@ -91,7 +109,7 @@ const Compare = () => {
               initial={{ opacity: 0, x: index === 0 ? -20 : 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 * (index + 1) }}
-              className="glass-strong rounded-2xl p-6"
+              className="glass-strong rounded-2xl p-6 flex flex-col"
             >
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-bold">คันที่ {index + 1}</h3>
@@ -100,6 +118,7 @@ const Compare = () => {
                     variant="ghost"
                     size="icon"
                     onClick={() => removeBike(index)}
+                    aria-label={`ลบรถคันที่ ${index + 1}`}
                   >
                     <X className="w-4 h-4" />
                   </Button>
@@ -111,7 +130,8 @@ const Compare = () => {
                 onValueChange={(value) => handleBikeSelect(index, value)}
               >
                 <SelectTrigger className="glass">
-                  <SelectValue placeholder="Select a bike" />
+                  {/* แก้ไข Placeholder เป็นภาษาไทย */}
+                  <SelectValue placeholder="-- เลือกรถมอเตอร์ไซค์ --" />
                 </SelectTrigger>
                 <SelectContent>
                   {bikes
@@ -125,11 +145,11 @@ const Compare = () => {
               </Select>
 
               {selectedBikes[index] && (
-                <div className="mt-4">
+                <div className="mt-4 flex-grow flex items-center justify-center">
                   <img
                     src={(index === 0 ? bike1 : bike2)?.image}
                     alt={(index === 0 ? bike1 : bike2)?.fullName}
-                    className="w-full h-48 object-cover rounded-lg"
+                    className="w-full h-48 object-contain rounded-lg" // ใช้ object-contain เพื่อให้เห็นภาพรถทั้งคัน
                   />
                 </div>
               )}
@@ -138,7 +158,7 @@ const Compare = () => {
         </div>
 
         {/* Comparison Table */}
-        {bike1 && bike2 && (
+        {bike1 && bike2 ? (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -146,40 +166,41 @@ const Compare = () => {
             className="glass-strong rounded-2xl overflow-hidden"
           >
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full text-left">
                 <thead>
                   <tr className="border-b border-white/10">
-                    <th className="p-4 text-left text-foreground/60">Specification</th>
-                    <th className="p-4 text-center neon-text-cyan">{bike1.fullName}</th>
-                    <th className="p-4 text-center neon-text-green">{bike2.fullName}</th>
+                    {/* แก้ไข Header เป็นภาษาไทย */}
+                    <th className="p-4 text-left font-semibold text-foreground/60 w-1/3">คุณสมบัติ</th>
+                    <th className="p-4 text-center font-semibold neon-text-cyan w-1/3">{bike1.fullName}</th>
+                    <th className="p-4 text-center font-semibold neon-text-green w-1/3">{bike2.fullName}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {comparisonSpecs.map((spec) => {
-                    const val1 = bike1[spec.key as keyof typeof bike1];
-                    const val2 = bike2[spec.key as keyof typeof bike2];
+                    const val1 = bike1[spec.key as keyof Bike];
+                    const val2 = bike2[spec.key as keyof Bike];
                     const better = getBetterValue(spec.key, val1, val2);
 
+                    const formatValue = (value: any, key: string) => {
+                      if (value === null || value === undefined) return "-";
+                      if (typeof value === "number" && key === "price") {
+                        // แก้ไขการแสดงผลราคาเป็นสกุลเงินบาท (฿)
+                        return `${value.toLocaleString("th-TH")} ฿`;
+                      }
+                      if (typeof value === "number") {
+                        return value.toLocaleString("th-TH");
+                      }
+                      return value;
+                    };
+
                     return (
-                      <tr key={spec.key} className="border-b border-white/5 hover:bg-white/5">
+                      <tr key={spec.key} className="border-b border-white/5 last:border-b-0 hover:bg-white/5 transition-colors">
                         <td className="p-4 font-medium">{spec.label}</td>
-                        <td
-                          className={`p-4 text-center ${
-                            better === 1 ? "font-bold neon-text-cyan" : ""
-                          }`}
-                        >
-                          {typeof val1 === "number" && spec.key === "price"
-                            ? `$${val1.toLocaleString()}`
-                            : val1}
+                        <td className={`p-4 text-center ${better === 1 ? "font-bold neon-text-cyan" : ""}`}>
+                          {formatValue(val1, spec.key)}
                         </td>
-                        <td
-                          className={`p-4 text-center ${
-                            better === 2 ? "font-bold neon-text-green" : ""
-                          }`}
-                        >
-                          {typeof val2 === "number" && spec.key === "price"
-                            ? `$${val2.toLocaleString()}`
-                            : val2}
+                        <td className={`p-4 text-center ${better === 2 ? "font-bold neon-text-green" : ""}`}>
+                          {formatValue(val2, spec.key)}
                         </td>
                       </tr>
                     );
@@ -188,11 +209,10 @@ const Compare = () => {
               </table>
             </div>
           </motion.div>
-        )}
-
-        {(!bike1 || !bike2) && (
+        ) : (
+          // ข้อความแนะนำตอนยังไม่ได้เลือกรถ
           <div className="text-center py-16 text-foreground/60">
-            Select two bikes to start comparing
+            <p className="text-lg">กรุณาเลือกรถมอเตอร์ไซค์ 2 คันเพื่อเริ่มการเปรียบเทียบ</p>
           </div>
         )}
       </div>
