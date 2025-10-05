@@ -3,12 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { bikes } from "@/data/bikes"; // ตรวจสอบว่า path และ data structure ถูกต้อง
+import { bikes } from "@/data/bikes";
 import { useTranslation } from "react-i18next";
 
-// --- Components ย่อยสำหรับ UI ที่สะอาดขึ้น ---
 
-// ✨ 1. Indicator ขณะ AI กำลังพิมพ์
 const TypingIndicator = () => (
   <motion.div
     className="flex items-center space-x-1 p-3 rounded-lg bg-secondary/20 mr-auto max-w-[80%]"
@@ -34,7 +32,6 @@ const TypingIndicator = () => (
   </motion.div>
 );
 
-// ✨ 5. Component สำหรับข้อความจาก AI พร้อมปุ่มคำถามแนะนำ
 const AssistantMessage = ({ msg, onSuggestionClick }: { msg: Message, onSuggestionClick: (text: string) => void }) => (
   <motion.div
     className="flex flex-col items-start space-y-2"
@@ -63,41 +60,32 @@ const AssistantMessage = ({ msg, onSuggestionClick }: { msg: Message, onSuggesti
 );
 
 
-// --- Logic หลักของ AI ---
-
-// สร้าง type สำหรับ message ที่รองรับ suggestions
 type Message = {
   role: 'user' | 'assistant';
   content: string;
   suggestions?: string[];
 };
 
-// ✨ AI "Brain" - ฟังก์ชันหลักในการประมวลผลคำตอบ
 const getAIResponse = (input: string): Message => {
   const lowerInput = input.toLowerCase();
 
-  // --- Regex สำหรับจับ Pattern ที่ซับซ้อน ---
   const compareRegex = /เปรียบเทียบ|เทียบ|vs|versus|compare\s(.+?)\s(and|กับ)\s(.+)/i;
   const priceUnderRegex = /(ไม่เกิน|cheaper than|under)\s(\d+)/i;
   const hpOverRegex = /(แรงกว่า|แรงเกิน|hp over|more than)\s(\d+)\s*hp/i;
 
-  // --- ตรวจจับ Intent ---
   const isComparing = compareRegex.test(lowerInput);
   const isAskingPriceUnder = priceUnderRegex.exec(lowerInput);
   const isAskingHpOver = hpOverRegex.exec(lowerInput);
   
-  // --- ค้นหา Entities (ชื่อรุ่น, คุณสมบัติ) ---
   const mentionedBikes = bikes.filter(b => lowerInput.includes(b.brand.toLowerCase()) || lowerInput.includes(b.model.toLowerCase()));
   const wantsFastest = lowerInput.includes('เร็ว') || lowerInput.includes('fast');
   const wantsCheapest = lowerInput.includes('ถูก') || lowerInput.includes('cheap');
   const wantsMostPowerful = lowerInput.includes('แรง') || lowerInput.includes('power') || lowerInput.includes('hp');
   
-  // --- ✨ 2. ตรรกะสำหรับคำถามซับซ้อน (หลายเงื่อนไข) ---
   if (mentionedBikes.length === 0 && (wantsFastest || wantsCheapest || wantsMostPowerful)) {
     let sortedBikes = [...bikes];
     let responseText = "ผลการค้นหา:\n";
     
-    // เรียงลำดับตามเงื่อนไข
     if (wantsFastest) sortedBikes.sort((a, b) => b.topSpeed - a.topSpeed);
     if (wantsMostPowerful) sortedBikes.sort((a, b) => b.horsepower - a.horsepower);
     if (wantsCheapest) sortedBikes.sort((a, b) => a.price - b.price); // เงื่อนไขสุดท้ายจะมีผลที่สุด
@@ -106,7 +94,6 @@ const getAIResponse = (input: string): Message => {
     return { role: 'assistant', content: responseText, suggestions: ["รุ่นไหนประหยัดน้ำมันที่สุด?", "เปรียบเทียบ 2 รุ่นแรก"] };
   }
 
-  // --- ✨ 3. ตรรกะสำหรับการเปรียบเทียบ ---
   if (isComparing || mentionedBikes.length >= 2) {
     const bikesToCompare = mentionedBikes.length >= 2 ? mentionedBikes : bikes.filter(b => isComparing && (lowerInput.includes(b.brand.toLowerCase()) || lowerInput.includes(b.model.toLowerCase())));
     if (bikesToCompare.length >= 2) {
@@ -118,7 +105,6 @@ const getAIResponse = (input: string): Message => {
     }
   }
 
-  // --- ✨ 4. ตรรกะสำหรับคำแนะนำตามเงื่อนไข ---
   if (isAskingPriceUnder) {
     const maxPrice = parseInt(isAskingPriceUnder[2].replace(/,/g, ''), 10);
     const result = bikes.filter(b => b.price <= maxPrice).sort((a, b) => b.price - a.price);
@@ -138,14 +124,12 @@ const getAIResponse = (input: string): Message => {
     }
   }
 
-  // --- ตรรกะสำหรับข้อมูลรุ่นเดียว (เหมือนเดิมแต่ปรับปรุง) ---
   if (mentionedBikes.length === 1) {
     const bike = mentionedBikes[0];
     const responseText = `ข้อมูลสำหรับ ${bike.fullName}:\n- ราคา: ${bike.price.toLocaleString('th-TH')} บาท\n- แรงม้า: ${bike.horsepower} HP\n- ซีซี: ${bike.cc} CC\n- ความเร็วสูงสุด: ${bike.topSpeed} km/h\n- รายละเอียด: ${bike.description}`;
     return { role: 'assistant', content: responseText, suggestions: [`เปรียบเทียบกับรุ่นอื่น`, `มีโปรโมชั่นอะไรบ้าง?`] };
   }
 
-  // --- Fallback Response ---
   return {
     role: 'assistant',
     content: "สวัสดีครับ! ผมสามารถให้ข้อมูลเกี่ยวกับมอเตอร์ไซค์ได้ ลองถามได้เลยครับ เช่น:\n- 'แนะนำมอเตอร์ไซค์ที่เร็วที่สุด'\n- 'เปรียบเทียบ Yamaha R1 กับ Honda CBR1000RR'\n- 'มีรุ่นไหนราคาไม่เกิน 300,000 บ้าง?'",
@@ -178,7 +162,6 @@ const AIChat = () => {
     setIsLoading(true);
     setInput("");
 
-    // Simulate AI thinking time
     setTimeout(() => {
       const response = getAIResponse(messageText);
       setMessages(prev => [...prev, response]);
@@ -193,7 +176,6 @@ const AIChat = () => {
 
   return (
     <>
-      {/* Floating button */}
       <motion.button
         className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 bg-background/50 backdrop-blur-lg rounded-full shadow-lg neon-border-cyan"
         onClick={() => setIsOpen(!isOpen)}
@@ -213,7 +195,6 @@ const AIChat = () => {
         </AnimatePresence>
       </motion.button>
 
-      {/* Chat panel */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
