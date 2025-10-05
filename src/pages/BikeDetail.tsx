@@ -1,10 +1,10 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { getBikeBySlug } from "@/data/bikes"; // สมมติว่า path นี้ถูกต้อง
-import BikeViewer3D from "@/components/BikeViewer3D"; // สมมติว่า path นี้ถูกต้อง
+import { getBikeBySlug } from "@/data/bikes";
+import BikeViewer3D from "@/components/BikeViewer3D";
 import { Button } from "@/components/ui/button";
 import { Heart, ArrowLeft, Share2, Gauge, Zap, TrendingUp, Weight, Timer } from "lucide-react";
-import { useToast } from "@/hooks/use-toast"; // สมมติว่า path นี้ถูกต้อง
+import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
 
 const BikeDetail = () => {
@@ -15,7 +15,6 @@ const BikeDetail = () => {
 
   const [wishlist, setWishlist] = useState<string[]>([]);
 
-  // ใช้ useEffect เพื่ออ่านค่าจาก localStorage เพียงครั้งเดียวเมื่อ component โหลด
   useEffect(() => {
     try {
       const saved = localStorage.getItem("wishlist");
@@ -26,7 +25,6 @@ const BikeDetail = () => {
     }
   }, []);
 
-  // หน้าสำหรับกรณีที่ไม่พบข้อมูลมอเตอร์ไซค์
   if (!bike) {
     return (
       <div className="min-h-screen flex items-center justify-center text-center p-4">
@@ -40,7 +38,6 @@ const BikeDetail = () => {
     );
   }
 
-  // ฟังก์ชันเพิ่ม/ลบ Wishlist
   const toggleWishlist = () => {
     const isWishlisted = wishlist.includes(bike.slug);
     const newWishlist = isWishlisted
@@ -56,14 +53,12 @@ const BikeDetail = () => {
     });
   };
 
-  // ฟังก์ชันแชร์ (ปรับปรุงใหม่)
   const handleShare = async () => {
     const shareData = {
       title: bike.fullName,
       text: `ดูรายละเอียด ${bike.fullName} ได้ที่นี่!`,
       url: window.location.href,
     };
-    // ใช้ Web Share API ถ้า browser รองรับ (สำหรับมือถือ)
     if (navigator.share) {
       try {
         await navigator.share(shareData);
@@ -71,7 +66,6 @@ const BikeDetail = () => {
         console.error("Error sharing:", err);
       }
     } else {
-      // Fallback: คัดลอกลิงก์สำหรับ Desktop
       navigator.clipboard.writeText(window.location.href);
       toast({
         title: "คัดลอกลิงก์แล้ว!",
@@ -80,7 +74,6 @@ const BikeDetail = () => {
     }
   };
 
-  // แปลข้อมูล Specs เป็นภาษาไทย
   const specs = [
     { label: "เครื่องยนต์", value: `${bike.cc.toLocaleString('th-TH')} cc`, icon: Gauge },
     { label: "แรงม้า", value: `${bike.horsepower.toLocaleString('th-TH')} HP`, icon: Zap },
@@ -95,7 +88,6 @@ const BikeDetail = () => {
   return (
     <div className="min-h-screen pt-20 pb-16">
       <div className="container mx-auto px-4">
-        {/* Back Button */}
         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-6">
           <Button variant="ghost" onClick={() => navigate(-1)} className="glass">
             <ArrowLeft className="mr-2 w-4 h-4" />
@@ -103,7 +95,6 @@ const BikeDetail = () => {
           </Button>
         </motion.div>
 
-        {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
             <div>
@@ -124,12 +115,10 @@ const BikeDetail = () => {
           </div>
         </motion.div>
 
-        {/* 3D Viewer */}
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1, duration: 0.5 }} className="mb-12 glass-strong rounded-2xl overflow-hidden">
           <BikeViewer3D modelPath={bike.model3d} className="w-full h-[60vh]" />
         </motion.div>
 
-        {/* Specs Grid */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
           <h2 className="text-3xl font-bold mb-6 neon-text-green">ข้อมูลจำเพาะ</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -150,13 +139,11 @@ const BikeDetail = () => {
           </div>
         </motion.div>
 
-        {/* Price & CTA */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-strong rounded-2xl p-8 mt-12">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
               <div className="text-sm text-foreground/60 mb-2">ราคาเริ่มต้น</div>
               <div className="text-4xl md:text-5xl font-bold neon-text-cyan flex items-center">
-                {/* แก้ไขการแสดงผลราคาเป็นสกุลเงินบาท (฿) */}
                 {bike.price.toLocaleString('th-TH')} ฿
               </div>
             </div>
