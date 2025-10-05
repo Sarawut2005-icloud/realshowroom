@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { bikes, getBikeBySlug } from "@/data/bikes"; // สมมติว่า path นี้ถูกต้อง
+import { bikes, getBikeBySlug } from "@/data/bikes";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -12,24 +12,20 @@ import {
 } from "@/components/ui/select";
 import { X } from "lucide-react";
 
-// สร้าง Type สำหรับ Bike เพื่อความปลอดภัยของโค้ด (แนะนำ)
 type Bike = ReturnType<typeof getBikeBySlug>;
 
 const Compare = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedBikes, setSelectedBikes] = useState<string[]>([]);
 
-  // Effect ที่ 1: อ่านค่าจาก URL เมื่อเข้ามาที่หน้านี้ครั้งแรก
   useEffect(() => {
     const bikesParam = searchParams.get("bikes");
     if (bikesParam) {
-      // จำกัดให้มีแค่ 2 คัน และป้องกันค่าว่างที่อาจเกิดจาก split
       const initialBikes = bikesParam.split(",").filter(Boolean).slice(0, 2);
       setSelectedBikes(initialBikes);
     }
-  }, []); // ให้ทำงานแค่ครั้งเดียวตอน component โหลด
+  }, []);
 
-  // Effect ที่ 2: อัปเดต URL search params ทุกครั้งที่ผู้ใช้เปลี่ยนรถ
   useEffect(() => {
     const newSearchParams = new URLSearchParams(searchParams);
     if (selectedBikes.length > 0) {
@@ -37,7 +33,6 @@ const Compare = () => {
     } else {
       newSearchParams.delete("bikes");
     }
-    // ใช้ replace: true เพื่อไม่ให้ history ของ browserรกเกินไป
     setSearchParams(newSearchParams, { replace: true });
   }, [selectedBikes, setSearchParams]);
 
@@ -48,7 +43,6 @@ const Compare = () => {
   };
 
   const removeBike = (index: number) => {
-    // เมื่อลบ ให้สร้าง array ใหม่โดยไม่มี item ที่ตำแหน่งนั้น
     const newSelection = selectedBikes.filter((_, i) => i !== index);
     setSelectedBikes(newSelection);
   };
@@ -66,7 +60,7 @@ const Compare = () => {
     { label: "น้ำหนัก (กิโลกรัม)", key: "weight" },
     { label: "ความเร็วสูงสุด (กม./ชม.)", key: "topSpeed" },
     { label: "0-100 กม./ชม. (วินาที)", key: "zeroToHundred" },
-    { label: "ราคา (บาท)", key: "price" }, // แก้ไข Label
+    { label: "ราคา (บาท)", key: "price" },
   ];
 
   const getBetterValue = (key: string, val1: any, val2: any) => {
@@ -101,7 +95,6 @@ const Compare = () => {
           </p>
         </motion.div>
 
-        {/* Bike Selectors */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {[0, 1].map((index) => (
             <motion.div
@@ -130,7 +123,6 @@ const Compare = () => {
                 onValueChange={(value) => handleBikeSelect(index, value)}
               >
                 <SelectTrigger className="glass">
-                  {/* แก้ไข Placeholder เป็นภาษาไทย */}
                   <SelectValue placeholder="-- เลือกรถมอเตอร์ไซค์ --" />
                 </SelectTrigger>
                 <SelectContent>
@@ -149,7 +141,7 @@ const Compare = () => {
                   <img
                     src={(index === 0 ? bike1 : bike2)?.image}
                     alt={(index === 0 ? bike1 : bike2)?.fullName}
-                    className="w-full h-48 object-contain rounded-lg" // ใช้ object-contain เพื่อให้เห็นภาพรถทั้งคัน
+                    className="w-full h-48 object-contain rounded-lg"
                   />
                 </div>
               )}
@@ -157,7 +149,6 @@ const Compare = () => {
           ))}
         </div>
 
-        {/* Comparison Table */}
         {bike1 && bike2 ? (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -169,7 +160,6 @@ const Compare = () => {
               <table className="w-full text-left">
                 <thead>
                   <tr className="border-b border-white/10">
-                    {/* แก้ไข Header เป็นภาษาไทย */}
                     <th className="p-4 text-left font-semibold text-foreground/60 w-1/3">คุณสมบัติ</th>
                     <th className="p-4 text-center font-semibold neon-text-cyan w-1/3">{bike1.fullName}</th>
                     <th className="p-4 text-center font-semibold neon-text-green w-1/3">{bike2.fullName}</th>
@@ -184,7 +174,6 @@ const Compare = () => {
                     const formatValue = (value: any, key: string) => {
                       if (value === null || value === undefined) return "-";
                       if (typeof value === "number" && key === "price") {
-                        // แก้ไขการแสดงผลราคาเป็นสกุลเงินบาท (฿)
                         return `${value.toLocaleString("th-TH")} ฿`;
                       }
                       if (typeof value === "number") {
@@ -210,7 +199,6 @@ const Compare = () => {
             </div>
           </motion.div>
         ) : (
-          // ข้อความแนะนำตอนยังไม่ได้เลือกรถ
           <div className="text-center py-16 text-foreground/60">
             <p className="text-lg">กรุณาเลือกรถมอเตอร์ไซค์ 2 คันเพื่อเริ่มการเปรียบเทียบ</p>
           </div>
