@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom"; // เพิ่ม useSearchParams
+import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,6 @@ import { bikes } from "@/data/bikes";
 import { useToast } from "@/hooks/use-toast";
 import { Calendar } from "lucide-react";
 
-// Interface สำหรับข้อมูลการจอง
 interface Booking {
   id: string;
   name: string;
@@ -40,7 +39,6 @@ const Booking = () => {
     time: "",
   });
 
-  // ✅ Improvement: Pre-select bike from URL parameter
   useEffect(() => {
     const bikeSlug = searchParams.get("bike");
     if (bikeSlug && bikes.some(b => b.slug === bikeSlug)) {
@@ -63,13 +61,11 @@ const Booking = () => {
     bookings.push(booking);
     localStorage.setItem("bookings", JSON.stringify(bookings));
 
-    // แปลข้อความ Toast Notification
     toast({
       title: "ส่งข้อมูลการจองแล้ว!",
       description: "เราจะติดต่อกลับเพื่อยืนยันนัดหมายของคุณในเร็วๆ นี้",
     });
 
-    // Reset form
     setFormData({
       name: "",
       phone: "",
@@ -84,7 +80,6 @@ const Booking = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
   
-  // สร้างวันที่ปัจจุบันสำหรับ input date (ป้องกันการเลือกวันในอดีต)
   const today = new Date().toISOString().split("T")[0];
 
   return (
@@ -134,7 +129,7 @@ const Booking = () => {
                 required
                 className="glass mt-2"
                 placeholder="0812345678"
-                pattern="[0-9]{10}" // ✅ Improvement: Basic phone validation
+                pattern="[0-9]{10}"
                 title="กรุณากรอกเบอร์โทรศัพท์ 10 หลัก"
               />
             </div>
@@ -180,7 +175,7 @@ const Booking = () => {
                   onChange={(e) => handleChange("date", e.target.value)}
                   required
                   className="glass mt-2"
-                  min={today} // ป้องกันการเลือกวันที่ผ่านมาแล้ว
+                  min={today}
                 />
               </div>
 
@@ -193,8 +188,8 @@ const Booking = () => {
                   onChange={(e) => handleChange("time", e.target.value)}
                   required
                   className="glass mt-2"
-                  min="09:00" // ✅ Improvement: Set business hours
-                  max="18:00" // ✅ Improvement: Set business hours
+                  min="09:00"
+                  max="18:00"
                 />
               </div>
             </div>
