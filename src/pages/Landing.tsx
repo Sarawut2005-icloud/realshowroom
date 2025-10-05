@@ -6,7 +6,6 @@ import { ArrowRight } from "lucide-react";
 const Landing = () => {
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated background particles */}
       <div className="absolute inset-0">
         {[...Array(20)].map((_, i) => (
           <motion.div
@@ -29,14 +28,12 @@ const Landing = () => {
         ))}
       </div>
 
-      {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Logo */}
           <motion.div
             className="mb-8 inline-block"
             animate={{ scale: [1, 1.05, 1] }}
@@ -51,7 +48,6 @@ const Landing = () => {
             </div>
           </motion.div>
 
-          {/* Title */}
           <motion.h1
             className="text-6xl md:text-8xl font-bold mb-6"
             initial={{ opacity: 0, y: 20 }}
@@ -62,7 +58,6 @@ const Landing = () => {
             <span className="neon-text-green">Bike</span>
           </motion.h1>
 
-          {/* Tagline */}
           <motion.p
             className="text-xl md:text-2xl text-foreground/70 mb-12 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
@@ -72,7 +67,6 @@ const Landing = () => {
             ร้านขายบิ๊กไบค์อันดับ 1
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             initial={{ opacity: 0, y: 20 }}
@@ -99,7 +93,6 @@ const Landing = () => {
             </Link>
           </motion.div>
 
-          {/* Stats */}
           <motion.div
             className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
@@ -122,7 +115,6 @@ const Landing = () => {
         </motion.div>
       </div>
 
-      {/* Bottom gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </div>
   );
