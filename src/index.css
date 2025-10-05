@@ -2,64 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* Dark cosmic background */
     --background: 220 20% 8%;
     --foreground: 0 0% 98%;
 
-    /* Glass cards with slight tint */
     --card: 220 20% 12%;
     --card-foreground: 0 0% 98%;
 
     --popover: 220 20% 10%;
     --popover-foreground: 0 0% 98%;
 
-    /* Neon cyan primary */
     --primary: 187 100% 50%;
     --primary-foreground: 220 20% 8%;
 
-    /* Neon green secondary */
     --secondary: 158 100% 50%;
     --secondary-foreground: 220 20% 8%;
 
-    /* Muted glass effect */
     --muted: 220 20% 15%;
     --muted-foreground: 0 0% 70%;
 
-    /* Accent neon */
     --accent: 187 100% 50%;
     --accent-foreground: 220 20% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    /* Glass borders */
     --border: 0 0% 20%;
     --input: 220 20% 15%;
     --ring: 187 100% 50%;
 
     --radius: 0.75rem;
 
-    /* Custom neon colors */
     --neon-cyan: 187 100% 50%;
     --neon-green: 158 100% 50%;
     --neon-cyan-glow: 187 100% 60%;
     --neon-green-glow: 158 100% 60%;
 
-    /* Gradients */
     --gradient-neon: linear-gradient(135deg, hsl(187 100% 50%), hsl(158 100% 50%));
     --gradient-bg: linear-gradient(180deg, hsl(220 20% 8%), hsl(220 30% 5%));
 
-    /* Glass effect */
     --glass-bg: hsla(0, 0%, 100%, 0.03);
     --glass-border: hsla(0, 0%, 100%, 0.1);
 
-    /* Shadows with neon glow */
     --shadow-neon-cyan: 0 0 30px hsla(187, 100%, 50%, 0.5);
     --shadow-neon-green: 0 0 30px hsla(158, 100%, 50%, 0.5);
     --shadow-glass: 0 8px 32px hsla(0, 0%, 0%, 0.4);
@@ -85,7 +70,6 @@ All colors MUST be HSL.
     background: linear-gradient(180deg, hsl(220 20% 8%), hsl(220 30% 5%));
   }
 
-  /* Glass morphism utilities */
   .glass {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(20px);
