@@ -13,7 +13,7 @@ export const useEasterEgg = () => {
         
         if (newKeys.join(',') === KONAMI_CODE.join(',')) {
           setActivated(true);
-          setTimeout(() => setActivated(false), 10000); // Deactivate after 10s
+          setTimeout(() => setActivated(false), 10000);
           return [];
         }
         
