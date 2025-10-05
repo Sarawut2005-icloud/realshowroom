@@ -13,7 +13,6 @@ function BikeModel({ modelPath }: BikeModelProps) {
 
   useFrame((state) => {
     if (group.current) {
-      // Subtle rotation animation
       group.current.rotation.y += 0.002;
     }
   });
@@ -76,7 +75,6 @@ const BikeViewer3D = ({ modelPath, className = "" }: BikeViewer3DProps) => {
         </Suspense>
       </Canvas>
       
-      {/* Gradient overlay */}
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-background via-transparent to-transparent opacity-30" />
     </div>
   );
