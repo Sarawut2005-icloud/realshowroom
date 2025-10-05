@@ -9,7 +9,7 @@ export interface Bike {
   weight: number;
   topSpeed: number;
   zeroToHundred: number;
-  price: number; // ราคาเป็นหน่วยบาท (THB)
+  price: number;
   image: string;
   imageLite: string;
   model3d: string;
@@ -29,7 +29,7 @@ export const bikes: Bike[] = [
     weight: 199,
     topSpeed: 299,
     zeroToHundred: 3.0,
-    price: 899000, // ปรับราคาเป็น THB
+    price: 899000,
     image: "/images/yamaha-r1.jpg",
     imageLite: "/images/yamaha-r1-lite.jpg",
     model3d: "/models/yamaha-r1.glb",
@@ -39,7 +39,7 @@ export const bikes: Bike[] = [
   {
     slug: "yamaha-r15m",
     brand: "Yamaha",
-    model: "R15M", // แก้ไข Model ให้ตรงกับ FullName
+    model: "R15M",
     fullName: "Yamaha YZF-R15M",
     cc: 155,
     horsepower: 18.6,
@@ -47,7 +47,7 @@ export const bikes: Bike[] = [
     weight: 142,
     topSpeed: 136,
     zeroToHundred: 8.5,
-    price: 135000, // ปรับราคาเป็น THB
+    price: 135000,
     image: "/images/yamaha-r15.jpg",
     imageLite: "/images/yamaha-r15-lite.jpg",
     model3d: "/models/yamaha-r15.glb",
@@ -65,7 +65,7 @@ export const bikes: Bike[] = [
     weight: 207,
     topSpeed: 299,
     zeroToHundred: 2.9,
-    price: 915000, // ปรับราคาเป็น THB
+    price: 915000,
     image: "/images/kawasaki-zx10r.jpg",
     imageLite: "/images/kawasaki-zx10r-lite.jpg",
     model3d: "/models/kawasaki-zx10r.glb",
@@ -83,7 +83,7 @@ export const bikes: Bike[] = [
     weight: 168,
     topSpeed: 179,
     zeroToHundred: 4.9,
-    price: 225000, // ปรับราคาเป็น THB
+    price: 225000,
     image: "/images/kawasaki-ninja-400.jpg",
     imageLite: "/images/kawasaki-ninja-400-lite.jpg",
     model3d: "/models/kawasaki-ninja-400.glb",
@@ -93,7 +93,7 @@ export const bikes: Bike[] = [
   {
     slug: "kawasaki-h2",
     brand: "Kawasaki",
-    model: "Ninja H2", // แก้ไข Model ให้ตรงกับ FullName
+    model: "Ninja H2",
     fullName: "Kawasaki Ninja H2",
     cc: 998,
     horsepower: 228,
@@ -101,7 +101,7 @@ export const bikes: Bike[] = [
     weight: 238,
     topSpeed: 337,
     zeroToHundred: 2.6,
-    price: 1680000, // ปรับราคาเป็น THB
+    price: 1680000,
     image: "/images/kawasaki-h2.jpg",
     imageLite: "/images/kawasaki-h2-lite.jpg",
     model3d: "/models/kawasaki-h2.glb",
@@ -119,7 +119,7 @@ export const bikes: Bike[] = [
     weight: 197,
     topSpeed: 303,
     zeroToHundred: 3.1,
-    price: 1055000, // ปรับราคาเป็น THB
+    price: 1055000,
     image: "/images/bmw-s1000rr.jpg",
     imageLite: "/images/bmw-s1000rr-lite.jpg",
     model3d: "/models/bmw-s1000rr.glb",
@@ -137,7 +137,7 @@ export const bikes: Bike[] = [
     weight: 208,
     topSpeed: 220,
     zeroToHundred: 4.2,
-    price: 324300, // ปรับราคาเป็น THB
+    price: 324300,
     image: "/images/honda-cbr650r.jpg",
     imageLite: "/images/honda-cbr650r-lite.jpg",
     model3d: "/models/honda-cbr650r.glb",
@@ -155,7 +155,7 @@ export const bikes: Bike[] = [
     weight: 196,
     topSpeed: 299,
     zeroToHundred: 3.0,
-    price: 859000, // ปรับราคาเป็น THB
+    price: 859000,
     image: "/images/honda-cbr1000rr.jpg",
     imageLite: "/images/honda-cbr1000rr-lite.jpg",
     model3d: "/models/honda-cbr1000rr.glb",
@@ -173,7 +173,7 @@ export const bikes: Bike[] = [
     weight: 198,
     topSpeed: 305,
     zeroToHundred: 2.9,
-    price: 1299000, // ปรับราคาเป็น THB
+    price: 1299000,
     image: "/images/ducati-panigale-v4.jpg",
     imageLite: "/images/ducati-panigale-v4-lite.jpg",
     model3d: "/models/ducati-panigale-v4.glb",
@@ -191,7 +191,7 @@ export const bikes: Bike[] = [
     weight: 200,
     topSpeed: 270,
     zeroToHundred: 3.4,
-    price: 799000, // ปรับราคาเป็น THB
+    price: 799000,
     image: "/images/ducati-panigale-v2.jpg",
     imageLite: "/images/ducati-panigale-v2-lite.jpg",
     model3d: "/models/ducati-panigale-v2.glb",
