@@ -1,16 +1,15 @@
-import { Bike } from '@/data/bikes'; // ตรวจสอบว่ามีการ export type 'Bike'
+import { Bike } from '@/data/bikes';
 import { Trophy, Star, Crown, Rocket, Gem } from 'lucide-react';
 
 export interface Achievement {
   id: string;
-  nameKey: string; // Key สำหรับ i18next
-  descriptionKey: string; // Key สำหรับ i18next
+  nameKey: string;
+  descriptionKey: string;
   icon: React.ElementType;
   condition: (viewedSlugs: string[], allBikes: Bike[]) => boolean;
 }
 
 export const achievements: Achievement[] = [
-  // Milestone Achievements
   {
     id: 'firstLook',
     nameKey: 'achievements.firstLook.name',
@@ -39,7 +38,6 @@ export const achievements: Achievement[] = [
     icon: Crown,
     condition: (viewed, all) => viewed.length === all.length,
   },
-  // Brand Fan Achievements
   ...['Yamaha', 'Kawasaki', 'Ducati', 'Honda', 'BMW'].map(brand => ({
     id: `${brand.toLowerCase()}Fan`,
     nameKey: `achievements.brandFan.name`,
