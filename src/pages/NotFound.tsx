@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 const NotFound = () => {
   const location = useLocation();
 
-  // This effect is useful for developers to see 404 errors in the console.
   useEffect(() => {
     console.error(
       `404 Error: Path not found -> ${location.pathname}`
