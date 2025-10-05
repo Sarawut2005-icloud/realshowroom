@@ -3,17 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Award } from "lucide-react";
 import { bikes } from "@/data/bikes";
 import { useTranslation } from "react-i18next";
-import { achievements, Achievement } from "@/data/achievements"; // ปรับ path ตามที่เก็บไฟล์
+import { achievements, Achievement } from "@/data/achievements";
 import Confetti from 'react-confetti';
 import { useWindowSize } from '@uidotdev/usehooks';
 
-// --- ✨ NEW: Toast Notification Component ---
 const AchievementToast = ({ achievement, onEnd }: { achievement: Achievement; onEnd: () => void }) => {
   const { t } = useTranslation();
   const { width, height } = useWindowSize();
 
   useEffect(() => {
-    const timer = setTimeout(onEnd, 5000); // Toast หายไปใน 5 วินาที
+    const timer = setTimeout(onEnd, 5000);
     return () => clearTimeout(timer);
   }, [onEnd]);
   
@@ -52,25 +51,22 @@ const GamificationTracker = () => {
     for (const achievement of achievements) {
       if (!alreadyUnlockedIds.has(achievement.id)) {
         if (achievement.condition(currentViewed, bikes)) {
-          setNewlyUnlocked(achievement); // ตั้งค่าเพื่อแสดง Toast
+          setNewlyUnlocked(achievement);
           setUnlocked(prev => [...prev, achievement]);
-          break; // แสดงทีละ 1 achievement เพื่อไม่ให้รก
+          break;
         }
       }
     }
   }, [unlocked]);
 
-  // --- ✨ REAL-TIME UPDATE LOGIC ---
   useEffect(() => {
     // โหลดข้อมูลครั้งแรก
     const initialViewed = JSON.parse(localStorage.getItem('viewedBikes') || '[]');
     setViewedBikes(initialViewed);
 
-    // คำนวณ achievements ที่มีอยู่แล้วตอนโหลด
     const alreadyUnlocked = achievements.filter(ach => ach.condition(initialViewed, bikes));
     setUnlocked(alreadyUnlocked);
 
-    // สร้าง Listener เพื่อรอรับสัญญาณ 'bikeViewed'
     const handleBikeViewed = (event: Event) => {
       const customEvent = event as CustomEvent;
       const newViewedList = customEvent.detail.newViewedList;
@@ -80,7 +76,6 @@ const GamificationTracker = () => {
 
     window.addEventListener('bikeViewed', handleBikeViewed);
 
-    // Cleanup listener เมื่อ component ถูก unmount
     return () => {
       window.removeEventListener('bikeViewed', handleBikeViewed);
     };
