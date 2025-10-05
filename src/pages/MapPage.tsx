@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { MapPin, Navigation, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-// ✅ 1. Replaced placeholder data with realistic Thai locations
 const locations = [
   {
     id: 1,
@@ -36,26 +35,25 @@ type LocationStatus = 'idle' | 'fetching' | 'success' | 'error';
 const MapPage = () => {
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
   const [nearestBranch, setNearestBranch] = useState<typeof locations[0] | null>(null);
-  // ✅ 2. Added state for better user feedback
   const [locationStatus, setLocationStatus] = useState<LocationStatus>('idle');
 
   useEffect(() => {
     if (navigator.geolocation) {
-      setLocationStatus('fetching'); // Start fetching
+      setLocationStatus('fetching');
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const coords: [number, number] = [position.coords.latitude, position.coords.longitude];
           setUserLocation(coords);
           findNearestBranch(coords);
-          setLocationStatus('success'); // Success
+          setLocationStatus('success');
         },
         (error) => {
           console.error("Error getting location:", error);
-          setLocationStatus('error'); // Error
+          setLocationStatus('error');
         }
       );
     } else {
-      setLocationStatus('error'); // Geolocation not supported
+      setLocationStatus('error');
     }
   }, []);
 
@@ -74,11 +72,10 @@ const MapPage = () => {
     setNearestBranch(nearest);
   };
 
-  // Haversine formula to calculate distance between two lat/lng points
   const calculateDistance = (coords1: [number, number], coords2: [number, number]) => {
     const [lat1, lon1] = coords1;
     const [lat2, lon2] = coords2;
-    const R = 6371; // Radius of the Earth in km
+    const R = 6371;
     const dLat = ((lat2 - lat1) * Math.PI) / 180;
     const dLon = ((lon2 - lon1) * Math.PI) / 180;
     const a =
@@ -151,7 +148,6 @@ const MapPage = () => {
                 size="sm"
                 className="w-full bg-gradient-to-r from-primary to-secondary text-background"
                 onClick={() => {
-                  // ✅ 3. Corrected Google Maps URL for directions
                   window.open(
                     `https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}`,
                     "_blank"
