@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useSpring, animate } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-// --- Components ย่อย (AnimatedCounter, SystemLog) ยังคงเหมือนเดิม ---
 const AnimatedCounter = ({ value }: { value: number }) => {
   const [displayValue, setDisplayValue] = useState(0);
 
@@ -40,7 +39,7 @@ const SystemLog = ({ t }: { t: Function }) => {
       setCurrentLog(logs[Math.floor(Math.random() * logs.length)]);
     }, 700);
     return () => clearInterval(interval);
-  }, [logs]); // Added dependencies for correctness
+  }, [logs]);
 
   return (
     <AnimatePresence mode="wait">
@@ -59,17 +58,14 @@ const SystemLog = ({ t }: { t: Function }) => {
 };
 
 
-// --- Main Loading Screen Component ---
 const LoadingScreen = () => {
   const [progress, setProgress] = useState(0);
-  // ✨ MODIFIED: ตรวจสอบ sessionStorage ตอนเริ่มต้นเพื่อกำหนดว่าจะแสดงผลหรือไม่
   const [loadingComplete, setLoadingComplete] = useState(
     () => sessionStorage.getItem('hasLoadedInSession') === 'true'
   );
   const { t } = useTranslation();
 
   useEffect(() => {
-    // ✨ MODIFIED: ถ้าเคยโหลดเสร็จแล้วใน session นี้ ก็ไม่ต้องทำอะไรเลย
     if (loadingComplete) return;
 
     let currentProgress = 0;
@@ -77,7 +73,6 @@ const LoadingScreen = () => {
       if (currentProgress >= 100) {
         setProgress(100);
         
-        // ✨ MODIFIED: บันทึกค่าลง sessionStorage ว่าโหลดเสร็จแล้ว
         sessionStorage.setItem('hasLoadedInSession', 'true');
         
         setTimeout(() => setLoadingComplete(true), 500);
@@ -97,7 +92,7 @@ const LoadingScreen = () => {
     
     setTimeout(updateProgress, 100);
 
-  }, [loadingComplete]); // ✨ MODIFIED: เพิ่ม dependency
+  }, [loadingComplete]);
 
   const svgPathLength = useSpring(progress / 100, {
     stiffness: 400,
@@ -108,7 +103,6 @@ const LoadingScreen = () => {
     <AnimatePresence>
       {!loadingComplete && (
         <motion.div
-            // ... JSX ทั้งหมดข้างในเหมือนเดิม ...
             className="fixed inset-0 z-[200] bg-background flex items-center justify-center overflow-hidden"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.5, delay: 0.5 } }}
