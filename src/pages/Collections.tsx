@@ -1,6 +1,6 @@
-import { useState, useMemo } from "react"; // เพิ่ม useMemo
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { bikes, brands } from "@/data/bikes"; // สมมติว่า path นี้ถูกต้อง
+import { bikes, brands } from "@/data/bikes";
 import { Heart, Search, SlidersHorizontal } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -12,15 +12,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Link } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast"; // สมมติว่า path นี้ถูกต้อง
+import { useToast } from "@/hooks/use-toast";
 
 const Collections = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedBrand, setSelectedBrand] = useState<string>("all");
-  const [sortBy, setSortBy] = useState<string>("name-asc"); // เปลี่ยนค่าเริ่มต้นให้ชัดเจน
+  const [sortBy, setSortBy] = useState<string>("name-asc");
   const { toast } = useToast();
 
-  // State สำหรับ Wishlist, อ่านค่าจาก localStorage ตอนเริ่มต้น
   const [wishlist, setWishlist] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem("wishlist");
@@ -31,7 +30,6 @@ const Collections = () => {
     }
   });
 
-  // ฟังก์ชันสำหรับเพิ่ม/ลบ Wishlist
   const toggleWishlist = (slug: string) => {
     const isWishlisted = wishlist.includes(slug);
     const newWishlist = isWishlisted
@@ -41,14 +39,12 @@ const Collections = () => {
     setWishlist(newWishlist);
     localStorage.setItem("wishlist", JSON.stringify(newWishlist));
     
-    // แสดง Toast Notification เป็นภาษาไทย
     toast({
       title: isWishlisted ? "ลบออกจากรายการโปรดแล้ว" : "เพิ่มในรายการโปรดแล้ว",
       description: bikes.find(b => b.slug === slug)?.fullName,
     });
   };
 
-  // ใช้ useMemo เพื่อคำนวณการ filter และ sort แค่ตอนที่ค่า dependency เปลี่ยน
   const filteredAndSortedBikes = useMemo(() => {
     let filtered = bikes.filter((bike) => {
       const searchLower = searchQuery.toLowerCase();
@@ -59,7 +55,6 @@ const Collections = () => {
       return matchesSearch && matchesBrand;
     });
 
-    // Sort bikes
     return filtered.sort((a, b) => {
       switch (sortBy) {
         case "hp-desc":
@@ -83,7 +78,6 @@ const Collections = () => {
   return (
     <div className="min-h-screen pt-24 pb-16">
       <div className="container mx-auto px-4">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -98,7 +92,6 @@ const Collections = () => {
           </p>
         </motion.div>
 
-        {/* Filters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -106,7 +99,6 @@ const Collections = () => {
           className="glass-strong rounded-2xl p-6 mb-8"
         >
           <div className="flex flex-col md:flex-row gap-4">
-            {/* Search */}
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-foreground/50" />
               <Input
@@ -117,7 +109,6 @@ const Collections = () => {
               />
             </div>
 
-            {/* Brand Filter */}
             <Select value={selectedBrand} onValueChange={setSelectedBrand}>
               <SelectTrigger className="w-full md:w-48 glass">
                 <SelectValue placeholder="เลือกยี่ห้อ" />
@@ -132,7 +123,6 @@ const Collections = () => {
               </SelectContent>
             </Select>
 
-            {/* Sort */}
             <Select value={sortBy} onValueChange={setSortBy}>
               <SelectTrigger className="w-full md:w-48 glass">
                 <SlidersHorizontal className="w-4 h-4 mr-2" />
@@ -150,17 +140,15 @@ const Collections = () => {
           </div>
         </motion.div>
 
-        {/* Results Count */}
         <div className="mb-6 text-foreground/60">
           พบ {filteredAndSortedBikes.length} คัน
         </div>
 
-        {/* Bikes Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredAndSortedBikes.map((bike, index) => (
             <motion.div
               key={bike.slug}
-              layout // เพิ่ม layout prop เพื่อ animation ที่สวยงามตอน filter/sort
+              layout
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -212,7 +200,6 @@ const Collections = () => {
 
                 <div className="flex items-center justify-between pt-4 border-t border-white/10">
                   <div className="text-xl font-bold neon-text-cyan">
-                    {/* แก้ไขการแสดงผลราคาเป็นสกุลเงินบาท (฿) */}
                     {bike.price.toLocaleString('th-TH')} ฿
                   </div>
                   <Link to={`/bike/${bike.slug}`}>
