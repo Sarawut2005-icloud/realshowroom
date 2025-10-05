@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { getBikeBySlug } from "@/data/bikes";
 import { Clock, CheckCircle, XCircle, Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { Link } from "react-router-dom"; // แนะนำให้ใช้ Link แทน <a>
+import { Link } from "react-router-dom";
 
 interface Booking {
   id: string;
@@ -29,7 +29,6 @@ const History = () => {
     }
   }, []);
 
-  // แปลสถานะเป็นภาษาไทย
   const translateStatus = (status: Booking["status"]) => {
     switch (status) {
       case "confirmed":
@@ -41,7 +40,6 @@ const History = () => {
     }
   };
 
-  // แปลประเภทการจองเป็นภาษาไทย
   const translateBookingType = (type: string) => {
     switch (type) {
         case "test-ride":
